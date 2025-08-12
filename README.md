@@ -7,6 +7,17 @@
 
 A production-ready, comprehensive Notion-like editor for Laravel applications using Editor.js. Features a complete block-based editing experience with advanced tools, file handling, and seamless Laravel integration.
 
+## 🌐 Live Demo
+
+**[Try the Interactive Demo →](https://rafaelogic.github.io/writr/)**
+
+Experience all features of Writr Editor including:
+- All block types and inline formatting tools
+- Real-time content capture and form submission
+- Content export in multiple formats (HTML, Markdown, JSON)
+- Professional inline toolbar with modern design
+- Mobile-responsive editing interface
+
 ## ✨ Features
 
 ### 📝 Core Editor Capabilities

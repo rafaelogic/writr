@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writr Editor - Laravel Notion-like Editor Demo</title>
+    <meta name="description" content="Experience Writr, the comprehensive Notion-like editor for Laravel. Try all features including blocks, inline formatting, content capture, and more.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Writr Editor - Laravel Notion-like Editor Demo">
+    <meta property="og:description" content="Professional block-based editor with advanced features for Laravel applications">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rafaelogic.github.io/writr/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzM3NDBGRiIvPgo8cGF0aCBkPSJNOCAxMkg3VjIwSDhWMTZIMTJWMjBIMTNWMTJIMTJWMTVIOFYxMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xOCAxNEgxN1YyMkgxOFYxOEgyMlYyMkgyM1YxNEgyMlYxN0gxOFYxNFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary: #3740ff;
+            --primary-dark: #2938d9;
+            --secondary: #f8fafc;
+            --accent: #e2e8f0;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --text-muted: #94a3b8;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Demo Section */
+        .demo-section {
+            background: var(--background);
+            padding: 4rem 0;
+            margin-top: -2rem;
+            border-radius: 2rem 2rem 0 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Editor Demo */
+        .editor-demo {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .editor-container {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .editor-header {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .editor-title {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .editor-content {
+            padding: 2rem;
+            min-height: 600px;
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            position: sticky;
+            top: 120px;
+        }
+
+        .controls-header {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            margin-bottom: 2rem;
+        }
+
+        .control-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .control-button {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--background);
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .control-button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Payload Viewer */
+        .payload-viewer {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: var(--radius);
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: var(--radius);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Links Section */
+        .links-section {
+            background: var(--surface);
+            padding: 4rem 0;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .link-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .link-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .link-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .link-description {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .editor-demo {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-panel {
+                position: static;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Editor Specific Styles */
+        .writr-editor {
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .ce-block__content {
+            max-width: none !important;
+        }
+
+        .ce-toolbar__settings-btn {
+            background: var(--surface) !important;
+            border: 1px solid var(--border) !important;
+        }
+
+        .ce-inline-toolbar {
+            background: var(--background) !important;
+            border: 1px solid var(--border) !important;
+            box-shadow: var(--shadow-lg) !important;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #e2e8f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .payload-container {
+            position: relative;
+        }
+    </style>
+
+    <!-- EditorJS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/underline@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">
+                <div class="logo-icon">W</div>
+                Writr Editor
+            </a>
+            <ul class="nav-links">
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#links" class="nav-link">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Writr Editor</h1>
+            <p>The most comprehensive Notion-like editor for Laravel applications. Built with Editor.js, featuring advanced blocks, inline formatting, and seamless Laravel integration.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/rafaelogic/writr" class="btn btn-primary">
+                    📦 GitHub Repository
+                </a>
+                <a href="https://packagist.org/packages/rafaelogic/writr" class="btn btn-secondary">
+                    🚀 Packagist
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Demo</h2>
+                <p class="section-subtitle">Experience all the features of Writr Editor. Try creating different blocks, formatting text, and see how content is captured for form submissions.</p>
+            </div>
+
+            <div class="editor-demo">
+                <div class="editor-container">
+                    <div class="editor-header">
+                        <div class="editor-title">📝 Writr Editor Demo</div>
+                    </div>
+                    <div class="editor-content">
+                        <div id="editorjs"></div>
+                    </div>
+                </div>
+
+                <div class="controls-panel">
+                    <h3 class="controls-header">🎛️ Controls</h3>
+
+                    <div class="control-group">
+                        <label class="control-label">Content Operations</label>
+                        <button class="control-button" onclick="captureContent()">
+                            📄 Capture Content
+                        </button>
+                        <button class="control-button" onclick="exportHTML()">
+                            🔄 Export HTML
+                        </button>
+                        <button class="control-button" onclick="exportMarkdown()">
+                            📝 Export Markdown
+                        </button>
+                        <button class="control-button" onclick="clearEditor()">
+                            🗑️ Clear Editor
+                        </button>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Form Simulation</label>
+                        <button class="control-button" onclick="simulateFormSubmission()">
+                            📤 Simulate Form Submit
+                        </button>
+                        <button class="control-button" onclick="simulateAjaxSubmission()">
+                            ⚡ Simulate AJAX Submit
+                        </button>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Demo Content</label>
+                        <button class="control-button" onclick="loadSampleContent()">
+                            📋 Load Sample Content
+                        </button>
+                        <button class="control-button" onclick="loadComplexExample()">
+                            🎯 Load Complex Example
+                        </button>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">📊 Content Payload</label>
+                        <div class="payload-container">
+                            <div id="payload-viewer" class="payload-viewer">Content will appear here when you interact with the editor...</div>
+                            <button class="copy-btn" onclick="copyPayload()" title="Copy to clipboard">Copy</button>
+                        </div>
+                    </div>
+
+                    <div id="status-messages"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-grid container">
+        <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3 class="feature-title">All Block Types</h3>
+            <p class="feature-description">Headers, paragraphs, lists, quotes, code blocks, tables, images, embeds, and more. Every tool you need for rich content creation.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3 class="feature-title">Inline Formatting</h3>
+            <p class="feature-description">Modern inline toolbar with bold, italic, underline, links, markers, and inline code. Appears contextually when text is selected.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3 class="feature-title">Laravel Integration</h3>
+            <p class="feature-description">Drop-in Blade component, automatic content capture, form integration, and comprehensive Laravel ecosystem support.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3 class="feature-title">Mobile Responsive</h3>
+            <p class="feature-description">Optimized touch interface, responsive design, and smooth mobile editing experience across all devices.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3 class="feature-title">Performance Optimized</h3>
+            <p class="feature-description">Lightweight bundle, lazy loading, memory management, and optimized for production environments.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3 class="feature-title">Security Hardened</h3>
+            <p class="feature-description">Content sanitization, XSS protection, CSRF tokens, and comprehensive input validation built-in.</p>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section id="links" class="links-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Resources & Links</h2>
+                <p class="section-subtitle">Everything you need to get started with Writr Editor in your Laravel projects.</p>
+            </div>
+
+            <div class="links-grid">
+                <a href="https://github.com/rafaelogic/writr" class="link-card">
+                    <div class="link-icon">📦</div>
+                    <h3 class="link-title">GitHub Repository</h3>
+                    <p class="link-description">Source code, issues, discussions, and contributions. Star the repo to show your support!</p>
+                </a>
+
+                <a href="https://packagist.org/packages/rafaelogic/writr" class="link-card">
+                    <div class="link-icon">🚀</div>
+                    <h3 class="link-title">Packagist</h3>
+                    <p class="link-description">Official Composer package. Install with: composer require rafaelogic/writr</p>
+                </a>
+
+                <a href="https://github.com/rafaelogic/writr/blob/main/README.md" class="link-card">
+                    <div class="link-icon">📚</div>
+                    <h3 class="link-title">Documentation</h3>
+                    <p class="link-description">Comprehensive installation guide, configuration options, and usage examples.</p>
+                </a>
+
+                <a href="https://github.com/rafaelogic/writr/blob/main/CHANGELOG.md" class="link-card">
+                    <div class="link-icon">📋</div>
+                    <h3 class="link-title">Changelog</h3>
+                    <p class="link-description">Version history, release notes, and migration guides for all versions.</p>
+                </a>
+
+                <a href="https://editorjs.io/" class="link-card">
+                    <div class="link-icon">⚡</div>
+                    <h3 class="link-title">Editor.js</h3>
+                    <p class="link-description">The powerful block-styled editor that powers Writr. Learn about the underlying technology.</p>
+                </a>
+
+                <a href="https://laravel.com" class="link-card">
+                    <div class="link-icon">🎯</div>
+                    <h3 class="link-title">Laravel</h3>
+                    <p class="link-description">The elegant PHP framework. Writr is built specifically for Laravel applications.</p>
+                </a>
+
+                <a href="https://github.com/rafaelogic/writr/issues" class="link-card">
+                    <div class="link-icon">🐛</div>
+                    <h3 class="link-title">Issues & Support</h3>
+                    <p class="link-description">Report bugs, request features, or get help with implementation questions.</p>
+                </a>
+
+                <a href="https://github.com/rafaelogic/writr/releases" class="link-card">
+                    <div class="link-icon">🏷️</div>
+                    <h3 class="link-title">Releases</h3>
+                    <p class="link-description">Download specific versions, view release notes, and track the development progress.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Writr Editor. Made with ❤️ for the Laravel community.</p>
+            <p>Open source under MIT License. Built with Editor.js and modern web technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        let editor;
+        let currentPayload = {};
+
+        // Initialize Editor
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEditor();
+            loadSampleContent();
+        });
+
+        function initializeEditor() {
+            editor = new EditorJS({
+                holder: 'editorjs',
+                placeholder: 'Start writing your content...',
+                tools: {
+                    header: {
+                        class: Header,
+                        config: {
+                            placeholder: 'Enter a heading...',
+                            levels: [1, 2, 3, 4, 5, 6],
+                            defaultLevel: 2
+                        }
+                    },
+                    list: {
+                        class: List,
+                        inlineToolbar: true,
+                        config: {
+                            defaultStyle: 'unordered'
+                        }
+                    },
+                    quote: {
+                        class: Quote,
+                        inlineToolbar: true,
+                        config: {
+                            quotePlaceholder: 'Enter a quote',
+                            captionPlaceholder: 'Quote author'
+                        }
+                    },
+                    code: {
+                        class: CodeTool,
+                        config: {
+                            placeholder: 'Enter code...'
+                        }
+                    },
+                    delimiter: Delimiter,
+                    table: {
+                        class: Table,
+                        inlineToolbar: true,
+                        config: {
+                            rows: 2,
+                            cols: 3
+                        }
+                    },
+                    linkTool: {
+                        class: LinkTool,
+                        config: {
+                            endpoint: 'https://httpbin.org/post'
+                        }
+                    },
+                    image: {
+                        class: ImageTool,
+                        config: {
+                            endpoints: {
+                                byFile: 'https://httpbin.org/post',
+                                byUrl: 'https://httpbin.org/post'
+                            }
+                        }
+                    },
+                    embed: {
+                        class: Embed,
+                        config: {
+                            services: {
+                                youtube: true,
+                                twitter: true,
+                                instagram: true,
+                                github: true
+                            }
+                        }
+                    },
+                    checklist: {
+                        class: Checklist,
+                        inlineToolbar: true
+                    },
+                    Marker: {
+                        class: Marker,
+                        shortcut: 'CMD+SHIFT+M'
+                    },
+                    inlineCode: {
+                        class: InlineCode,
+                        shortcut: 'CMD+SHIFT+C'
+                    },
+                    underline: {
+                        class: Underline,
+                        shortcut: 'CMD+U'
+                    }
+                },
+                onChange: function() {
+                    captureContent();
+                },
+                onReady: function() {
+                    showStatus('Editor initialized successfully!', 'success');
+                }
+            });
+        }
+
+        async function captureContent() {
+            try {
+                const outputData = await editor.save();
+                currentPayload = {
+                    timestamp: new Date().toISOString(),
+                    blocks: outputData.blocks.length,
+                    content: outputData
+                };
+                
+                document.getElementById('payload-viewer').textContent = JSON.stringify(currentPayload, null, 2);
+                
+                // Simulate form field update
+                updateHiddenFormField(outputData);
+                
+            } catch (error) {
+                showStatus('Error capturing content: ' + error.message, 'error');
+            }
+        }
+
+        function updateHiddenFormField(data) {
+            // Simulate what happens in a real Laravel form
+            let hiddenField = document.getElementById('writr-content-field');
+            if (!hiddenField) {
+                hiddenField = document.createElement('input');
+                hiddenField.type = 'hidden';
+                hiddenField.id = 'writr-content-field';
+                hiddenField.name = 'content';
+                document.body.appendChild(hiddenField);
+            }
+            hiddenField.value = JSON.stringify(data);
+        }
+
+        async function exportHTML() {
+            try {
+                const outputData = await editor.save();
+                let html = '';
+                
+                outputData.blocks.forEach(block => {
+                    switch(block.type) {
+                        case 'header':
+                            html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>\\n`;
+                            break;
+                        case 'paragraph':
+                            html += `<p>${block.data.text}</p>\\n`;
+                            break;
+                        case 'list':
+                            const tag = block.data.style === 'ordered' ? 'ol' : 'ul';
+                            html += `<${tag}>`;
+                            block.data.items.forEach(item => {
+                                html += `<li>${item}</li>`;
+                            });
+                            html += `</${tag}>\\n`;
+                            break;
+                        case 'quote':
+                            html += `<blockquote>${block.data.text}`;
+                            if (block.data.caption) {
+                                html += `<cite>${block.data.caption}</cite>`;
+                            }
+                            html += `</blockquote>\\n`;
+                            break;
+                        case 'code':
+                            html += `<pre><code>${block.data.code}</code></pre>\\n`;
+                            break;
+                        case 'delimiter':
+                            html += `<hr>\\n`;
+                            break;
+                        default:
+                            html += `<!-- ${block.type} block -->\\n`;
+                    }
+                });
+                
+                document.getElementById('payload-viewer').textContent = html;
+                showStatus('Content exported to HTML!', 'success');
+            } catch (error) {
+                showStatus('Error exporting HTML: ' + error.message, 'error');
+            }
+        }
+
+        async function exportMarkdown() {
+            try {
+                const outputData = await editor.save();
+                let markdown = '';
+                
+                outputData.blocks.forEach(block => {
+                    switch(block.type) {
+                        case 'header':
+                            markdown += `${'#'.repeat(block.data.level)} ${block.data.text}\\n\\n`;
+                            break;
+                        case 'paragraph':
+                            markdown += `${block.data.text}\\n\\n`;
+                            break;
+                        case 'list':
+                            block.data.items.forEach((item, index) => {
+                                const prefix = block.data.style === 'ordered' ? `${index + 1}. ` : '- ';
+                                markdown += `${prefix}${item}\\n`;
+                            });
+                            markdown += '\\n';
+                            break;
+                        case 'quote':
+                            markdown += `> ${block.data.text}\\n`;
+                            if (block.data.caption) {
+                                markdown += `> — ${block.data.caption}\\n`;
+                            }
+                            markdown += '\\n';
+                            break;
+                        case 'code':
+                            markdown += `\`\`\`\\n${block.data.code}\\n\`\`\`\\n\\n`;
+                            break;
+                        case 'delimiter':
+                            markdown += `---\\n\\n`;
+                            break;
+                    }
+                });
+                
+                document.getElementById('payload-viewer').textContent = markdown;
+                showStatus('Content exported to Markdown!', 'success');
+            } catch (error) {
+                showStatus('Error exporting Markdown: ' + error.message, 'error');
+            }
+        }
+
+        function clearEditor() {
+            editor.clear();
+            document.getElementById('payload-viewer').textContent = 'Editor cleared. Start typing to see content...';
+            showStatus('Editor cleared!', 'success');
+        }
+
+        async function simulateFormSubmission() {
+            try {
+                const outputData = await editor.save();
+                const formData = {
+                    title: 'Demo Article',
+                    slug: 'demo-article',
+                    status: 'published',
+                    content: outputData,
+                    meta: {
+                        author: 'Demo User',
+                        created_at: new Date().toISOString(),
+                        word_count: outputData.blocks.length * 50, // Approximate
+                        reading_time: Math.ceil(outputData.blocks.length * 50 / 200) // Approximate
+                    }
+                };
+                
+                document.getElementById('payload-viewer').textContent = JSON.stringify(formData, null, 2);
+                showStatus('🚀 Form submission simulated! Check the payload.', 'success');
+            } catch (error) {
+                showStatus('Error simulating form submission: ' + error.message, 'error');
+            }
+        }
+
+        async function simulateAjaxSubmission() {
+            try {
+                const outputData = await editor.save();
+                const ajaxPayload = {
+                    action: 'update_content',
+                    editor_id: 'demo-editor',
+                    content: outputData,
+                    csrf_token: 'demo-csrf-token-12345',
+                    auto_save: true,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Simulate AJAX request
+                showStatus('⚡ Sending AJAX request...', 'success');
+                
+                setTimeout(() => {
+                    document.getElementById('payload-viewer').textContent = JSON.stringify(ajaxPayload, null, 2);
+                    showStatus('✅ AJAX submission successful!', 'success');
+                }, 1000);
+                
+            } catch (error) {
+                showStatus('Error simulating AJAX submission: ' + error.message, 'error');
+            }
+        }
+
+        function loadSampleContent() {
+            const sampleData = {
+                blocks: [
+                    {
+                        type: "header",
+                        data: {
+                            text: "Welcome to Writr Editor Demo",
+                            level: 1
+                        }
+                    },
+                    {
+                        type: "paragraph",
+                        data: {
+                            text: "This is a comprehensive demonstration of the <b>Writr Editor</b> - a powerful Notion-like editor for Laravel applications. Built on top of Editor.js, it provides a modern, intuitive editing experience with advanced features."
+                        }
+                    },
+                    {
+                        type: "header",
+                        data: {
+                            text: "Key Features",
+                            level: 2
+                        }
+                    },
+                    {
+                        type: "list",
+                        data: {
+                            style: "unordered",
+                            items: [
+                                "Rich text editing with inline formatting",
+                                "Multiple block types (headers, lists, quotes, code, tables)",
+                                "Drag & drop block reordering",
+                                "Image and file uploads",
+                                "Seamless Laravel integration"
+                            ]
+                        }
+                    },
+                    {
+                        type: "quote",
+                        data: {
+                            text: "Writr Editor makes content creation in Laravel applications both powerful and enjoyable.",
+                            caption: "Laravel Developer"
+                        }
+                    }
+                ]
+            };
+            
+            editor.render(sampleData);
+            showStatus('Sample content loaded!', 'success');
+        }
+
+        function loadComplexExample() {
+            const complexData = {
+                blocks: [
+                    {
+                        type: "header",
+                        data: {
+                            text: "Advanced Writr Editor Example",
+                            level: 1
+                        }
+                    },
+                    {
+                        type: "paragraph",
+                        data: {
+                            text: "This example showcases advanced features including <mark class=\\"cdx-marker\\">highlighted text</mark>, <code class=\\"inline-code\\">inline code</code>, and <u>underlined text</u>."
+                        }
+                    },
+                    {
+                        type: "checklist",
+                        data: {
+                            items: [
+                                {
+                                    text: "✅ Block-based editing",
+                                    checked: true
+                                },
+                                {
+                                    text: "✅ Inline formatting tools",
+                                    checked: true
+                                },
+                                {
+                                    text: "🚧 Real-time collaboration (coming soon)",
+                                    checked: false
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        type: "table",
+                        data: {
+                            content: [
+                                ["Feature", "Status", "Version"],
+                                ["Basic Editing", "✅ Available", "1.0+"],
+                                ["Inline Toolbar", "✅ Available", "1.1+"],
+                                ["Content Capture", "✅ Available", "1.1+"]
+                            ]
+                        }
+                    },
+                    {
+                        type: "code",
+                        data: {
+                            code: "// Laravel Blade Component Usage\\n<x-writr-editor \\n    name=\\"content\\" \\n    :value=\\"$article->content\\" \\n    placeholder=\\"Start writing...\\" \\n/>"
+                        }
+                    },
+                    {
+                        type: "delimiter",
+                        data: {}
+                    },
+                    {
+                        type: "paragraph",
+                        data: {
+                            text: "Try the control buttons on the right to see how content is captured and exported in different formats!"
+                        }
+                    }
+                ]
+            };
+            
+            editor.render(complexData);
+            showStatus('Complex example loaded!', 'success');
+        }
+
+        function copyPayload() {
+            const payloadText = document.getElementById('payload-viewer').textContent;
+            navigator.clipboard.writeText(payloadText).then(() => {
+                showStatus('📋 Payload copied to clipboard!', 'success');
+            }).catch(() => {
+                showStatus('Failed to copy to clipboard', 'error');
+            });
+        }
+
+        function showStatus(message, type) {
+            const statusContainer = document.getElementById('status-messages');
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status-message status-${type}`;
+            statusDiv.textContent = message;
+            
+            statusContainer.appendChild(statusDiv);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                statusContainer.removeChild(statusDiv);
+            }, 3000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
