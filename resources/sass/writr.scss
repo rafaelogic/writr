@@ -1,0 +1,1090 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+// Writr Editor Base Styles
+.writr-editor-wrapper {
+  @apply relative;
+  
+  // CSS Variables for theming
+  --writr-primary-color: #3b82f6;
+  --writr-bg-color: #ffffff;
+  --writr-text-color: #1f2937;
+  --writr-border-color: #e5e7eb;
+  --writr-focus-color: #60a5fa;
+  --writr-muted-color: #6b7280;
+  --writr-accent-color: #f3f4f6;
+  --writr-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --writr-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  // Font families
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  
+  // Dark mode variables
+  &.writr-dark {
+    --writr-bg-color: #1f2937;
+    --writr-text-color: #f9fafb;
+    --writr-border-color: #374151;
+    --writr-accent-color: #374151;
+    --writr-muted-color: #9ca3af;
+  }
+}
+
+// Main editor container
+.writr-editor {
+  @apply relative min-h-[300px] p-4 bg-writr-bg border border-writr-border rounded-lg;
+  color: var(--writr-text-color);
+  
+  // Editor focus state
+  &:focus-within {
+    @apply ring-2 ring-writr-focus border-transparent;
+  }
+  
+  // Override Editor.js default styles
+  .codex-editor {
+    @apply relative;
+    
+    .codex-editor__redactor {
+      @apply pb-4;
+    }
+    
+    .ce-block__content {
+      @apply max-w-none;
+      // Remove any borders that might interfere with editing
+      border: none !important;
+      outline: none !important;
+    }
+    
+    // Remove block borders and ensure editability
+    .ce-block {
+      border: none !important;
+      outline: none !important;
+      
+      &:hover {
+        border: none !important;
+        outline: none !important;
+      }
+      
+      &.ce-block--selected {
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+      }
+      
+      &.ce-block--focused {
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+      }
+    }
+    
+    // Ensure content is editable
+    [contenteditable="true"] {
+      border: none !important;
+      outline: none !important;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      cursor: text !important;
+      
+      &:focus {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    }
+    
+    .ce-toolbar {
+      @apply left-0;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+    }
+    
+    .ce-toolbox {
+      @apply bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: absolute !important;
+      z-index: 1000 !important;
+      // min-width: 200px !important;
+      max-height: none !important;
+      overflow: visible !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      
+      .ce-toolbox__button {
+        @apply text-writr-text hover:bg-writr-accent;
+        display: block !important;
+        padding: 8px 12px !important;
+        white-space: nowrap !important;
+      }
+    }
+    
+    // Ensure toolbar button is visible
+    .ce-toolbar__plus {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      position: relative !important;
+      width: auto !important;
+      height: auto !important;
+      background-color: #1f2937;
+      color: #f1f1f1;
+    }
+    
+    .ce-toolbar__settings-btn {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      position: relative !important;
+      width: auto !important;
+      height: auto !important;
+      background-color: #1f2937;
+      color: #f1f1f1;
+    }
+    
+    .ce-toolbar__actions {
+      display: flex !important;
+      position: relative !important;
+      // Remove any right positioning that might push toolbar off-screen
+      right: auto !important;
+      left: auto !important;
+    }
+    
+    .ce-inline-toolbar {
+      @apply bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg;
+      
+      .ce-inline-tool {
+        @apply text-writr-text hover:bg-writr-accent;
+      }
+    }
+    
+    .ce-conversion-toolbar {
+      @apply bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg;
+    }
+    
+    .ce-settings {
+      @apply bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg;
+      
+      .ce-settings__button {
+        @apply text-writr-text hover:bg-writr-accent;
+      }
+    }
+    
+    .ce-popover {
+      @apply bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg;
+      
+      .ce-popover__item {
+        @apply text-writr-text hover:bg-writr-accent;
+      }
+    }
+  }
+}
+
+// Block styles
+.writr-editor {
+  // Remove any potential blocking styles on EditorJS blocks
+  .ce-block,
+  .ce-block__content,
+  [data-tool] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    
+    &:hover,
+    &:focus,
+    &:active {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+  }
+  
+  // Ensure all content editable areas work properly
+  [contenteditable],
+  [contenteditable="true"],
+  input,
+  textarea {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    cursor: text !important;
+    
+    &:hover,
+    &:focus,
+    &:active {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+  }
+
+  // Paragraph
+  .ce-paragraph {
+    @apply text-writr-text leading-relaxed;
+    border: none !important;
+    outline: none !important;
+    
+    &[data-placeholder]:empty::before {
+      @apply text-writr-muted;
+    }
+  }
+  
+  // Headers with more distinct sizing
+  .ce-header {
+    @apply font-bold text-writr-text;
+    
+    &[data-level="1"] { 
+      @apply text-4xl mt-8 mb-6;
+      font-size: 2.5rem !important;
+      line-height: 1.2;
+    }
+    &[data-level="2"] { 
+      @apply text-3xl mt-6 mb-4;
+      font-size: 2rem !important;
+      line-height: 1.3;
+    }
+    &[data-level="3"] { 
+      @apply text-2xl mt-5 mb-3;
+      font-size: 1.5rem !important;
+      line-height: 1.4;
+    }
+    &[data-level="4"] { 
+      @apply text-xl mt-4 mb-2;
+      font-size: 1.25rem !important;
+      line-height: 1.4;
+    }
+    &[data-level="5"] { 
+      @apply text-lg mt-3 mb-2;
+      font-size: 1.125rem !important;
+      line-height: 1.4;
+    }
+    &[data-level="6"] { 
+      @apply text-base mt-2 mb-1;
+      font-size: 1rem !important;
+      line-height: 1.5;
+    }
+    
+    // Add level indicators for better identification in editor
+    &::after {
+      content: " H" attr(data-level);
+      @apply inline-block ml-2 px-2 py-1 text-xs bg-writr-primary text-white rounded opacity-50;
+      font-weight: normal;
+      font-size: 0.75rem !important;
+    }
+  }
+  
+  // Lists
+  .cdx-list {
+    @apply text-writr-text;
+    
+    .cdx-list__item {
+      @apply mb-1;
+    }
+  }
+  
+  // Custom Writr List Tool
+  .writr-list {
+    @apply text-writr-text my-4;
+    list-style: none;
+    padding-left: 0;
+    
+    &.writr-list-wrapper--ordered {
+      list-style: decimal;
+      padding-left: 1.5rem;
+    }
+    
+    &.writr-list-wrapper--unordered {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+    
+    .writr-list-item {
+      @apply mb-2;
+      
+      .writr-list-item-content {
+        @apply text-writr-text leading-relaxed;
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+        cursor: text;
+        min-height: 1.2em;
+        
+        &[contenteditable="true"]:focus {
+          outline: none !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+        
+        &[data-placeholder]:empty::before {
+          content: attr(data-placeholder);
+          @apply text-writr-muted;
+          font-style: italic;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  
+  // Checklist
+  .cdx-checklist {
+    .cdx-checklist__item {
+      @apply flex items-start gap-2 mb-2 text-writr-text;
+      
+      .cdx-checklist__item-checkbox {
+        @apply mt-1 rounded border-writr-border focus:ring-writr-focus;
+      }
+      
+      &--checked .cdx-checklist__item-text {
+        @apply line-through text-writr-muted;
+      }
+    }
+  }
+  
+  // Quote
+  .cdx-quote {
+    @apply border-l-4 border-writr-primary pl-4 py-2 my-4 bg-writr-accent;
+    
+    .cdx-quote__text {
+      @apply text-lg italic text-writr-text mb-2;
+    }
+    
+    .cdx-quote__caption {
+      @apply text-sm text-writr-muted;
+    }
+  }
+  
+  // Code
+  .ce-code {
+    @apply bg-writr-accent border border-writr-border rounded-lg p-4 my-4;
+    
+    .ce-code__textarea {
+      @apply bg-transparent text-writr-text font-mono text-sm resize-none;
+      font-family: 'Fira Code', 'Monaco', 'Menlo', monospace;
+    }
+  }
+  
+  // Delimiter
+  .ce-delimiter {
+    @apply my-8 text-center;
+    
+    &::before {
+      content: '* * *';
+      @apply text-writr-muted text-2xl;
+    }
+  }
+  
+  // Table
+  .tc-table {
+    @apply w-full border-collapse my-4;
+    
+    .tc-row {
+      .tc-cell {
+        @apply border border-writr-border p-2 text-writr-text;
+        
+        &--selected {
+          @apply bg-writr-accent;
+        }
+      }
+    }
+    
+    .tc-table__head {
+      .tc-cell {
+        @apply bg-writr-accent font-medium;
+      }
+    }
+  }
+
+  // Enhanced Table Tool Styles
+  .writr-table {
+    @apply w-full border-collapse my-4;
+    
+    &--empty {
+      .writr-table-cell-input:empty::before {
+        @apply text-gray-400 italic;
+      }
+    }
+    
+    &--resizing {
+      user-select: none;
+      
+      * {
+        pointer-events: none;
+      }
+      
+      .writr-table-resize-handle {
+        pointer-events: all !important;
+      }
+    }
+    
+    .writr-table-table {
+      @apply w-full border-collapse;
+      table-layout: auto;
+      
+      .writr-table-row {
+        .writr-table-cell {
+          @apply border border-writr-border p-3 text-writr-text relative;
+          min-width: 100px;
+          position: relative;
+          
+          &--selected {
+            @apply bg-blue-50 border-blue-300;
+          }
+          
+          .writr-table-cell-input {
+            @apply w-full min-h-[24px] outline-none;
+            
+            &:empty::before {
+              content: attr(data-placeholder);
+              @apply text-writr-muted;
+            }
+            
+            &:focus:empty::before {
+              opacity: 0.6;
+            }
+            
+            img {
+              @apply mb-2 rounded;
+            }
+          }
+          
+          // Column resize handle
+          .writr-table-resize-handle--column {
+            position: absolute;
+            top: 0;
+            right: -3px;
+            width: 6px;
+            height: 100%;
+            background: transparent;
+            cursor: col-resize;
+            z-index: 10;
+            pointer-events: auto;
+            
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 2px;
+              width: 2px;
+              height: 100%;
+              background: transparent;
+              transition: background-color 0.2s ease;
+              pointer-events: none;
+            }
+            
+            &:hover::after {
+              background: rgba(59, 130, 246, 0.5);
+            }
+            
+            &:active::after {
+              background: rgba(59, 130, 246, 0.8);
+            }
+          }
+          
+          // Row resize handle
+          .writr-table-resize-handle--row {
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: transparent;
+            cursor: row-resize;
+            z-index: 10;
+            pointer-events: auto;
+            
+            &::after {
+              content: '';
+              position: absolute;
+              top: 2px;
+              left: 0;
+              width: 100%;
+              height: 2px;
+              background: transparent;
+              transition: background-color 0.2s ease;
+              pointer-events: none;
+            }
+            
+            &:hover::after {
+              background: rgba(59, 130, 246, 0.5);
+            }
+            
+            &:active::after {
+              background: rgba(59, 130, 246, 0.8);
+            }
+          }
+        }
+        
+        .writr-table-heading-cell {
+          @apply bg-writr-accent font-medium;
+        }
+      }
+    }
+    
+    // Enhanced placeholder styles for empty table
+    &--empty {
+      .writr-table-cell-input {
+        &:empty::before {
+          @apply text-gray-400;
+          font-style: italic;
+          opacity: 0.8;
+        }
+        
+        &:focus:empty::before {
+          opacity: 0.5;
+        }
+      }
+      
+      .writr-table-heading-cell .writr-table-cell-input:empty::before {
+        @apply text-gray-500 font-medium;
+        font-style: normal;
+      }
+    }
+  }
+
+  // Table Settings Panel
+  .writr-table-settings-wrapper {
+    // Override EditorJS settings width
+    width: max-content !important;
+    min-width: 300px !important;
+    overflow: visible !important;
+    
+    .writr-table-settings-button {
+      @apply flex-shrink-0;
+      
+      &--active {
+        @apply bg-blue-500 border-blue-500 text-white;
+      }
+    }
+  }
+
+  // EditorJS Block Settings Panel Width Fix
+  .ce-settings {
+    width: auto !important;
+    overflow: visible !important;
+    
+   
+    
+    // Specific override for table settings
+    .writr-table-settings-wrapper {
+      width: 100% !important;
+      min-width: 300px !important;
+    }
+  }
+  
+  // Warning
+  .cdx-warning {
+    @apply bg-yellow-50 border border-yellow-200 rounded-lg p-4 my-4;
+    
+    .cdx-warning__title {
+      @apply font-medium text-yellow-800 mb-2;
+    }
+    
+    .cdx-warning__message {
+      @apply text-yellow-700;
+    }
+  }
+  
+  // Image
+  .cdx-simple-image {
+    @apply my-4;
+    
+    .cdx-simple-image__picture {
+      @apply rounded-lg overflow-hidden;
+      
+      img {
+        @apply w-full h-auto;
+      }
+    }
+    
+    .cdx-simple-image__caption {
+      @apply text-center text-sm text-writr-muted mt-2;
+    }
+  }
+  
+  // Link tool
+  .link-tool {
+    @apply border border-writr-border rounded-lg p-4 my-4 hover:bg-writr-accent transition-colors;
+    
+    .link-tool__content {
+      .link-tool__title {
+        @apply font-medium text-writr-text mb-1;
+      }
+      
+      .link-tool__description {
+        @apply text-sm text-writr-muted mb-2;
+      }
+      
+      .link-tool__anchor {
+        @apply text-xs text-writr-primary;
+      }
+    }
+    
+    .link-tool__image {
+      @apply rounded-lg overflow-hidden;
+    }
+  }
+  
+  // Attaches
+  .cdx-attaches {
+    @apply border border-writr-border rounded-lg p-4 my-4;
+    
+    .cdx-attaches__title {
+      @apply font-medium text-writr-text mb-1;
+    }
+    
+    .cdx-attaches__size {
+      @apply text-sm text-writr-muted;
+    }
+  }
+}
+
+// Toolbar styles
+.writr-toolbar {
+  @apply flex items-center justify-between p-3 bg-writr-bg border-t border-writr-border;
+  
+  .writr-word-count {
+    @apply text-sm text-writr-muted;
+  }
+  
+  .writr-dark-mode-toggle,
+  .writr-preview-toggle,
+  .writr-toc-toggle {
+    @apply px-3 py-1 text-sm bg-writr-accent text-writr-text rounded hover:bg-opacity-80 transition-colors;
+  }
+}
+
+// Preview panel
+.writr-preview {
+  @apply p-6 bg-writr-bg border border-writr-border rounded-lg mt-4;
+  
+  // Typography styles for preview
+  h1 { @apply text-3xl font-bold mb-4; }
+  h2 { @apply text-2xl font-bold mb-3; }
+  h3 { @apply text-xl font-bold mb-2; }
+  h4 { @apply text-lg font-bold mb-2; }
+  h5 { @apply text-base font-bold mb-1; }
+  h6 { @apply text-sm font-bold mb-1; }
+  
+  p { @apply mb-4 leading-relaxed; }
+  
+  ul, ol { @apply mb-4 pl-6; }
+  li { @apply mb-1; }
+  
+  blockquote {
+    @apply border-l-4 border-writr-primary pl-4 py-2 my-4 bg-writr-accent italic;
+  }
+  
+  pre {
+    @apply bg-writr-accent border border-writr-border rounded-lg p-4 my-4 overflow-x-auto;
+    
+    code {
+      @apply font-mono text-sm;
+      font-family: 'Fira Code', 'Monaco', 'Menlo', monospace;
+    }
+  }
+  
+  table {
+    @apply w-full border-collapse my-4;
+    
+    th, td {
+      @apply border border-writr-border p-2 text-left;
+    }
+    
+    th {
+      @apply bg-writr-accent font-medium;
+    }
+  }
+  
+  img {
+    @apply max-w-full h-auto rounded-lg my-4;
+  }
+}
+
+// Table of contents
+.writr-toc {
+  @apply fixed right-4 top-1/2 transform -translate-y-1/2 w-64 max-h-96 overflow-y-auto bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg p-4 z-50;
+  
+  h3 {
+    @apply font-medium text-writr-text mb-3;
+  }
+  
+  .writr-toc-item {
+    @apply py-1 px-2 text-sm text-writr-text hover:bg-writr-accent rounded cursor-pointer transition-colors;
+    
+    &.writr-toc-level-1 { @apply ml-0 font-medium; }
+    &.writr-toc-level-2 { @apply ml-2; }
+    &.writr-toc-level-3 { @apply ml-4; }
+    &.writr-toc-level-4 { @apply ml-6; }
+    &.writr-toc-level-5 { @apply ml-8; }
+    &.writr-toc-level-6 { @apply ml-10; }
+  }
+}
+
+// Loading state
+.writr-loading {
+  @apply flex flex-col items-center justify-center py-12 text-writr-muted;
+  
+  .writr-spinner {
+    @apply w-8 h-8 border-2 border-writr-border border-t-writr-primary rounded-full animate-spin mb-4;
+  }
+}
+
+// Error state
+// Enhanced Quote Tool Styles
+.writr-quote {
+  @apply border-l-4 border-writr-primary pl-6 py-4 my-6 relative;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.03) 0%, transparent 100%);
+  
+  .writr-quote-text {
+    @apply text-lg leading-relaxed mb-3 font-medium text-writr-text;
+    
+    &:empty::before {
+      content: attr(data-placeholder);
+      @apply text-writr-muted italic font-normal;
+    }
+    
+    &:focus {
+      @apply outline-none;
+    }
+  }
+  
+  .writr-quote-caption {
+    @apply text-sm text-writr-muted font-medium;
+    
+    &:empty::before {
+      content: attr(data-placeholder);
+      @apply text-writr-muted italic font-normal opacity-60;
+    }
+    
+    &:focus {
+      @apply outline-none;
+    }
+    
+    &:not(:empty)::before {
+      content: '— ';
+      @apply text-writr-muted;
+    }
+  }
+  
+  // Quote styles variants
+  &--default {
+    @apply border-l-4 border-blue-500;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.03) 0%, transparent 100%);
+  }
+  
+  &--bordered {
+    @apply border border-writr-border rounded-lg p-6;
+    border-left-width: 4px !important;
+    border-left-color: #3b82f6 !important;
+    background: #f8fafc;
+    
+    .writr-quote-text {
+      @apply text-gray-700;
+    }
+  }
+  
+  &--highlighted {
+    @apply bg-yellow-50 border-l-4 border-yellow-400 rounded-lg p-6;
+    
+    .writr-quote-text {
+      @apply text-yellow-900;
+    }
+    
+    .writr-quote-caption {
+      @apply text-yellow-700;
+    }
+  }
+}
+
+// Quote Settings Panel
+.writr-quote-settings-wrapper {
+  .writr-quote-settings-button {
+    &--active {
+      @apply bg-blue-500 border-blue-500 text-white;
+    }
+  }
+}
+
+// Code Tool Styles
+.writr-code {
+  @apply my-4;
+  
+  .writr-code-header {
+    @apply flex items-center justify-between bg-gray-100 px-4 py-2 border-b border-gray-200 rounded-t-lg;
+    
+    .writr-code-language-label {
+      @apply text-sm font-medium text-gray-700;
+    }
+    
+    .writr-code-language-selector {
+      @apply ml-2 px-3 py-1 border border-gray-300 rounded text-sm bg-white;
+      
+      &:focus {
+        @apply outline-none ring-2 ring-blue-500 border-blue-500;
+      }
+    }
+  }
+  
+  .writr-code-textarea {
+    @apply w-full p-4 bg-gray-900 text-green-400 font-mono text-sm border-0 rounded-b-lg resize-none;
+    min-height: 150px;
+    
+    &:focus {
+      @apply outline-none ring-2 ring-blue-500;
+    }
+    
+    &::placeholder {
+      @apply text-gray-500;
+    }
+  }
+  
+  // Language-specific styling
+  &.language-javascript .writr-code-textarea {
+    @apply text-yellow-300 bg-gray-900;
+  }
+  
+  &.language-python .writr-code-textarea {
+    @apply text-blue-300 bg-gray-900;
+  }
+  
+  &.language-php .writr-code-textarea {
+    @apply text-purple-300 bg-gray-900;
+  }
+  
+  &.language-html .writr-code-textarea {
+    @apply text-orange-300 bg-gray-900;
+  }
+  
+  &.language-css .writr-code-textarea {
+    @apply text-pink-300 bg-gray-900;
+  }
+}
+
+.writr-error {
+  @apply p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 my-4;
+}
+
+// Collaboration features
+.writr-collaborators {
+  @apply flex items-center gap-2 mb-4;
+  
+  .writr-collaborator {
+    @apply w-8 h-8 bg-writr-primary text-white rounded-full flex items-center justify-center text-sm font-medium;
+  }
+}
+
+.writr-cursor {
+  @apply absolute w-0.5 bg-writr-primary;
+  
+  .writr-cursor-label {
+    @apply absolute -top-6 left-0 bg-writr-primary text-white text-xs px-2 py-1 rounded whitespace-nowrap;
+  }
+}
+
+// Comments
+.writr-comment {
+  @apply absolute bg-yellow-100 border border-yellow-300 rounded-lg p-2 shadow-lg z-40;
+  
+  .writr-comment-author {
+    @apply font-medium text-sm mb-1;
+  }
+  
+  .writr-comment-text {
+    @apply text-sm mb-2;
+  }
+  
+  .writr-comment-actions {
+    @apply flex gap-2;
+    
+    button {
+      @apply text-xs px-2 py-1 bg-yellow-200 hover:bg-yellow-300 rounded;
+    }
+  }
+}
+
+// Version history
+.writr-version-history {
+  @apply fixed left-4 top-1/2 transform -translate-y-1/2 w-64 max-h-96 overflow-y-auto bg-writr-bg border border-writr-border rounded-lg shadow-writr-lg p-4 z-50;
+  
+  .writr-version-item {
+    @apply p-2 border-b border-writr-border last:border-b-0 hover:bg-writr-accent cursor-pointer;
+    
+    .writr-version-date {
+      @apply text-sm font-medium text-writr-text;
+    }
+    
+    .writr-version-author {
+      @apply text-xs text-writr-muted;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .writr-editor-wrapper {
+    .writr-toc,
+    .writr-version-history {
+      @apply fixed inset-x-4 bottom-4 top-auto transform-none w-auto max-h-64;
+    }
+    
+    .writr-toolbar {
+      @apply flex-wrap gap-2;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .writr-toolbar,
+  .writr-toc,
+  .writr-version-history,
+  .writr-collaborators {
+    @apply hidden;
+  }
+  
+  .writr-editor {
+    @apply border-none shadow-none;
+  }
+}
+
+// Accessibility improvements
+.writr-editor-wrapper {
+  // Focus indicators
+  button:focus,
+  input:focus,
+  textarea:focus {
+    @apply outline-none ring-2 ring-writr-focus;
+  }
+  
+  // Screen reader only content
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+// Font Size Tool Styles
+.writr-font-size-button {
+  @apply flex items-center gap-1 px-2 py-1 bg-writr-accent text-writr-text rounded hover:bg-opacity-80 transition-colors;
+  position: relative;
+  border: 1px solid var(--writr-border-color);
+  min-width: 60px;
+  height: 28px;
+  font-size: 12px;
+  
+  .font-size-label {
+    @apply text-xs font-medium;
+    min-width: 20px;
+    text-align: center;
+  }
+  
+  &--active {
+    @apply bg-writr-primary text-white;
+    border-color: var(--writr-primary-color);
+  }
+  
+  &:hover {
+    background-color: var(--writr-focus-color);
+    color: white;
+  }
+}
+
+.writr-font-size-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid var(--writr-border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 80px;
+  
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+}
+
+.writr-font-size-dropdown-item {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  color: var(--writr-text-color);
+  
+  &:last-child {
+    border-bottom: none !important;
+  }
+  
+  &:hover {
+    background-color: var(--writr-accent-color) !important;
+  }
+  
+  &:active {
+    background-color: var(--writr-focus-color);
+    color: white;
+  }
+}
+
+// Animation utilities
+@keyframes writr-fade-in {
+  0% { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes writr-slide-up {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes writr-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.writr-fade-in {
+  animation: writr-fade-in 0.2s ease-out;
+}
+
+.writr-slide-up {
+  animation: writr-slide-up 0.3s ease-out;
+}
+
+.writr-pulse {
+  animation: writr-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

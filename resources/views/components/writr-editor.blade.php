@@ -1,0 +1,1 @@
+{{-- This file is intentionally empty. The WritrEditor component renders directly from PHP for better compatibility. --}}

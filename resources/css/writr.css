@@ -1,0 +1,582 @@
+/**
+ * Writr Editor v1.0 - Modular Tool Styles
+ * Modern, clean styles for the rebuilt Writr editor
+ */
+
+/* =============================================================================
+   BASE STYLES
+   ============================================================================= */
+
+.writr-editor {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    min-height: 300px;
+}
+
+.writr-editor:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* =============================================================================
+   COMMON TOOL STYLES
+   ============================================================================= */
+
+.writr-tool {
+    margin: 0;
+    padding: 8px 0;
+    outline: none;
+}
+
+.writr-tool:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.writr-tool:focus {
+    outline: none;
+}
+
+/* =============================================================================
+   PARAGRAPH TOOL
+   ============================================================================= */
+
+.writr-paragraph-tool {
+    padding: 8px 0;
+    line-height: 1.6;
+    min-height: 1.2em;
+}
+
+.writr-paragraph-tool__text {
+    outline: none;
+    word-break: break-word;
+}
+
+.writr-paragraph-tool__text:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Alignment classes */
+.writr-paragraph-tool--left { text-align: left; }
+.writr-paragraph-tool--center { text-align: center; }
+.writr-paragraph-tool--right { text-align: right; }
+.writr-paragraph-tool--justify { text-align: justify; }
+
+/* =============================================================================
+   HEADER TOOL
+   ============================================================================= */
+
+.writr-header-tool {
+    margin: 16px 0 8px;
+}
+
+.writr-header-tool__input {
+    outline: none;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.25;
+    word-break: break-word;
+}
+
+.writr-header-tool__input:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.writr-header-tool__input--h1 { font-size: 2.5em; font-weight: 700; }
+.writr-header-tool__input--h2 { font-size: 2em; font-weight: 600; }
+.writr-header-tool__input--h3 { font-size: 1.5em; font-weight: 600; }
+.writr-header-tool__input--h4 { font-size: 1.25em; font-weight: 500; }
+.writr-header-tool__input--h5 { font-size: 1.125em; font-weight: 500; }
+.writr-header-tool__input--h6 { font-size: 1em; font-weight: 500; }
+
+.writr-header-tool__anchor {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* =============================================================================
+   QUOTE TOOL
+   ============================================================================= */
+
+.writr-quote-tool {
+    margin: 16px 0;
+    padding: 16px 20px;
+    border-left: 4px solid #3b82f6;
+    background: #f8fafc;
+    font-style: italic;
+}
+
+.writr-quote-tool__text {
+    font-size: 1.125em;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.writr-quote-tool__text:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.writr-quote-tool__author {
+    font-size: 0.875em;
+    color: #6b7280;
+    outline: none;
+}
+
+.writr-quote-tool__author:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.writr-quote-tool__author:before {
+    content: "— ";
+}
+
+/* Quote styles */
+.writr-quote-tool--style-default {
+    border-left-color: #3b82f6;
+    background: #f8fafc;
+}
+
+.writr-quote-tool--style-warning {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+}
+
+.writr-quote-tool--style-success {
+    border-left-color: #10b981;
+    background: #f0fdf4;
+}
+
+.writr-quote-tool--style-error {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+/* =============================================================================
+   CODE TOOL
+   ============================================================================= */
+
+.writr-code-tool {
+    margin: 16px 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+    overflow: hidden;
+}
+
+.writr-code-tool__language {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.writr-code-tool__language-select {
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+}
+
+.writr-code-tool__textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 16px;
+    border: none;
+    background: transparent;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1f2937;
+    resize: vertical;
+    outline: none;
+}
+
+.writr-code-tool__textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* =============================================================================
+   LIST TOOL
+   ============================================================================= */
+
+.writr-list-tool {
+    margin: 8px 0;
+}
+
+.writr-list-tool__list {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.writr-list-tool__item {
+    margin: 4px 0;
+    position: relative;
+}
+
+.writr-list-tool__item-text {
+    outline: none;
+    word-break: break-word;
+    min-height: 1.2em;
+}
+
+.writr-list-tool__item-text:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* =============================================================================
+   TABLE TOOL
+   ============================================================================= */
+
+.writr-table-tool {
+    margin: 16px 0;
+    overflow-x: auto;
+}
+
+.writr-table-tool__table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.writr-table-tool__row {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.writr-table-tool__row:last-child {
+    border-bottom: none;
+}
+
+.writr-table-tool__cell {
+    position: relative;
+    border-right: 1px solid #e5e7eb;
+    padding: 8px 12px;
+    min-width: 100px;
+    vertical-align: top;
+}
+
+.writr-table-tool__cell:last-child {
+    border-right: none;
+}
+
+.writr-table-tool__cell-content {
+    outline: none;
+    min-height: 1.2em;
+    word-break: break-word;
+}
+
+.writr-table-tool__cell-content:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.writr-table-tool__cell--header {
+    background: #f9fafb;
+    font-weight: 600;
+}
+
+.writr-table-tool__controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.writr-table-tool__button {
+    padding: 6px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #fff;
+    color: #374151;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.writr-table-tool__button:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.writr-table-tool__button:active {
+    background: #f3f4f6;
+}
+
+/* =============================================================================
+   IMAGE TOOL
+   ============================================================================= */
+
+.writr-image-tool {
+    margin: 16px 0;
+}
+
+.writr-image-tool__image-container {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.writr-image-tool__image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.writr-image-tool__image--with-border {
+    border: 1px solid #e5e7eb;
+}
+
+.writr-image-tool__image--with-background {
+    background: #f9fafb;
+    padding: 16px;
+}
+
+.writr-image-tool__image--stretched {
+    width: 100%;
+}
+
+.writr-image-tool__caption {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    font-style: italic;
+    outline: none;
+    padding: 4px;
+}
+
+.writr-image-tool__caption:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.writr-image-tool__upload-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.writr-image-tool__upload-button:hover {
+    border-color: #3b82f6;
+    background: #f0f9ff;
+    color: #3b82f6;
+}
+
+.writr-image-tool__upload-button svg {
+    margin-bottom: 8px;
+}
+
+.writr-image-tool__url-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.writr-image-tool__loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    color: #6b7280;
+}
+
+.writr-image-tool__loader svg {
+    margin-bottom: 8px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* =============================================================================
+   SETTINGS
+   ============================================================================= */
+
+.writr-settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.writr-settings-item:hover {
+    background: #f9fafb;
+}
+
+.writr-settings-item--full {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.writr-settings-label {
+    font-size: 14px;
+    color: #374151;
+    font-weight: 500;
+}
+
+.writr-settings-hint {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.writr-settings-button {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.writr-settings-button--active {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.writr-settings-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.writr-settings-toggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.writr-settings-preview {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-left: 8px;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+    .writr-table-tool {
+        overflow-x: scroll;
+    }
+    
+    .writr-table-tool__table {
+        min-width: 500px;
+    }
+    
+    .writr-header-tool__input--h1 { font-size: 2em; }
+    .writr-header-tool__input--h2 { font-size: 1.75em; }
+    
+    .writr-settings-item {
+        padding: 12px;
+    }
+}
+
+/* =============================================================================
+   DARK MODE SUPPORT
+   ============================================================================= */
+
+@media (prefers-color-scheme: dark) {
+    .writr-editor {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .writr-tool:empty:before,
+    .writr-paragraph-tool__text:empty:before,
+    .writr-header-tool__input:empty:before,
+    .writr-quote-tool__text:empty:before,
+    .writr-quote-tool__author:empty:before,
+    .writr-list-tool__item-text:empty:before,
+    .writr-table-tool__cell-content:empty:before,
+    .writr-image-tool__caption:empty:before {
+        color: #6b7280;
+    }
+    
+    .writr-quote-tool {
+        background: #374151;
+        border-left-color: #60a5fa;
+    }
+    
+    .writr-code-tool {
+        background: #374151;
+        border-color: #4b5563;
+    }
+    
+    .writr-code-tool__language {
+        background: #4b5563;
+        border-bottom-color: #6b7280;
+    }
+    
+    .writr-table-tool__table {
+        border-color: #4b5563;
+    }
+    
+    .writr-table-tool__row {
+        border-bottom-color: #4b5563;
+    }
+    
+    .writr-table-tool__cell {
+        border-right-color: #4b5563;
+    }
+    
+    .writr-table-tool__cell--header {
+        background: #374151;
+    }
+}
+
+/* =============================================================================
+   PRINT STYLES
+   ============================================================================= */
+
+@media print {
+    .writr-editor {
+        border: none;
+        box-shadow: none;
+    }
+    
+    .writr-settings-item,
+    .writr-table-tool__controls {
+        display: none;
+    }
+}
