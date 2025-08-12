@@ -40,6 +40,8 @@ import { EventEmitter } from './editor/utils/EventEmitter.js';
 import ThemeManager from './utils/theme.js';
 import ContentExporter from './utils/exporter.js';
 import TableOfContents from './utils/table-of-contents.js';
+import ContentCaptureHandler, { contentCaptureHandler } from './utils/form-submission.js';
+import * as WritrHelpers from './utils/helpers.js';
 
 /**
  * Main Writr class that provides the public API
@@ -147,6 +149,8 @@ Writr.EventEmitter = EventEmitter;
 Writr.ThemeManager = ThemeManager;
 Writr.ContentExporter = ContentExporter;
 Writr.TableOfContents = TableOfContents;
+Writr.ContentCaptureHandler = ContentCaptureHandler;
+Writr.helpers = WritrHelpers;
 
 // Export APIs
 Writr.BlockAPI = BlockAPI;
@@ -171,6 +175,11 @@ Writr.tools = {
 if (typeof window !== 'undefined') {
     window.Writr = Writr;
     window.WritrEditor = WritrEditor;
+    
+    // Initialize global content capture handler
+    if (!window.writrContentCaptureHandler) {
+        window.writrContentCaptureHandler = new ContentCaptureHandler();
+    }
     
     // Maintain compatibility with old API
     window.writrEditors = window.writrEditors || {};
@@ -201,5 +210,7 @@ export {
     ImageTool,
     ThemeManager,
     ContentExporter,
-    TableOfContents
+    TableOfContents,
+    ContentCaptureHandler,
+    WritrHelpers
 };

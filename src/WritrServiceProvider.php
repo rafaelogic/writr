@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Rafaelogic\Writr\Components\WritrEditor;
 use Rafaelogic\Writr\Services\WritrService;
 use Rafaelogic\Writr\Services\AssetManager;
+use Rafaelogic\Writr\Services\SettingsService;
 
 class WritrServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,10 @@ class WritrServiceProvider extends ServiceProvider
 
         $this->app->singleton(AssetManager::class, function ($app) {
             return new AssetManager($app['config']['writr']);
+        });
+
+        $this->app->singleton(SettingsService::class, function ($app) {
+            return new SettingsService();
         });
     }
 
@@ -104,6 +109,6 @@ class WritrServiceProvider extends ServiceProvider
      */
     public function provides(): array
     {
-        return ['writr', AssetManager::class];
+        return ['writr', AssetManager::class, SettingsService::class];
     }
 }

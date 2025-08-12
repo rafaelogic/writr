@@ -59,7 +59,7 @@ export class ParagraphTool {
         this.wrapper = document.createElement('div');
         this.wrapper.className = 'writr-paragraph-wrapper';
 
-        this.element = document.createElement('p');
+        this.element = document.createElement('div');
         this.element.className = 'writr-paragraph';
         this.element.contentEditable = !this.readOnly;
         this.element.innerHTML = this.data.text;
@@ -72,11 +72,30 @@ export class ParagraphTool {
         // Set alignment
         this.element.style.textAlign = this.data.alignment;
 
-        // Add event listeners
+        // Ensure element is focusable and editable
         if (!this.readOnly) {
+            this.element.style.outline = 'none';
+            this.element.style.border = 'none';
+            this.element.style.minHeight = '1.2em';
+            this.element.style.cursor = 'text';
+            this.element.style.userSelect = 'text';
+            this.element.style.webkitUserSelect = 'text';
+            this.element.style.mozUserSelect = 'text';
+            
+            // Add event listeners
             this.element.addEventListener('input', this.onInput.bind(this));
             this.element.addEventListener('paste', this.onPaste.bind(this));
             this.element.addEventListener('keydown', this.onKeyDown.bind(this));
+            this.element.addEventListener('focus', this.onFocus.bind(this));
+            this.element.addEventListener('blur', this.onBlur.bind(this));
+            
+            // Ensure contentEditable is always true for this element
+            this.element.addEventListener('click', () => {
+                if (!this.readOnly) {
+                    this.element.contentEditable = true;
+                    this.element.focus();
+                }
+            });
         }
 
         this.wrapper.appendChild(this.element);
@@ -95,6 +114,24 @@ export class ParagraphTool {
         } else {
             this.element.removeAttribute('data-placeholder');
         }
+    }
+
+    /**
+     * Handle focus event
+     */
+    onFocus() {
+        // Ensure element remains editable on focus
+        if (!this.readOnly) {
+            this.element.contentEditable = true;
+        }
+    }
+
+    /**
+     * Handle blur event
+     */
+    onBlur() {
+        // Save content when element loses focus
+        this.data.text = this.element.innerHTML;
     }
 
     /**
@@ -239,7 +276,26 @@ export class ParagraphTool {
             this.element.removeEventListener('input', this.onInput);
             this.element.removeEventListener('paste', this.onPaste);
             this.element.removeEventListener('keydown', this.onKeyDown);
+            this.element.removeEventListener('focus', this.onFocus);
+            this.element.removeEventListener('blur', this.onBlur);
         }
+    }
+
+    /**
+     * Focus the tool element
+     */
+    focus() {
+        if (this.element && !this.readOnly) {
+            this.element.contentEditable = true;
+            this.element.focus();
+        }
+    }
+
+    /**
+     * Check if tool can be focused
+     */
+    static get isFocusable() {
+        return true;
     }
 }
 

@@ -84,24 +84,62 @@ export class HeaderTool {
         // Set the correct heading tag
         this.updateHeadingLevel();
 
-        // Event listeners
-        this.input.addEventListener('input', () => {
-            this.data.text = this.input.innerHTML;
-            this.updateAnchor();
-        });
+        // Ensure element is focusable and editable
+        if (!this.readOnly) {
+            this.input.style.outline = 'none';
+            this.input.style.border = 'none';
+            this.input.style.minHeight = '1.2em';
+            this.input.style.cursor = 'text';
+            this.input.style.userSelect = 'text';
+            this.input.style.webkitUserSelect = 'text';
+            this.input.style.mozUserSelect = 'text';
 
-        this.input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
+            // Store event handler references for cleanup
+            this.onInput = () => {
+                this.data.text = this.input.innerHTML;
+                this.updateAnchor();
+            };
+
+            this.onKeydown = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.api.blocks.insert();
+                }
+            };
+
+            this.onPasteHandler = (e) => {
                 e.preventDefault();
-                this.api.blocks.insert();
-            }
-        });
+                const text = (e.clipboardData || window.clipboardData).getData('text');
+                document.execCommand('insertText', false, text);
+            };
 
-        this.input.addEventListener('paste', (e) => {
-            e.preventDefault();
-            const text = (e.clipboardData || window.clipboardData).getData('text');
-            document.execCommand('insertText', false, text);
-        });
+            this.onFocus = () => {
+                // Ensure element remains editable on focus
+                if (!this.readOnly) {
+                    this.input.contentEditable = true;
+                }
+            };
+
+            this.onBlur = () => {
+                // Save content when element loses focus
+                this.data.text = this.input.innerHTML;
+            };
+
+            this.onClick = () => {
+                if (!this.readOnly) {
+                    this.input.contentEditable = true;
+                    this.input.focus();
+                }
+            };
+
+            // Event listeners
+            this.input.addEventListener('input', this.onInput);
+            this.input.addEventListener('keydown', this.onKeydown);
+            this.input.addEventListener('paste', this.onPasteHandler);
+            this.input.addEventListener('focus', this.onFocus);
+            this.input.addEventListener('blur', this.onBlur);
+            this.input.addEventListener('click', this.onClick);
+        }
 
         wrapper.appendChild(this.input);
 
@@ -249,6 +287,47 @@ export class HeaderTool {
                 button.classList.remove(this.CSS.settingsButtonActive);
             }
         });
+    }
+
+    /**
+     * Handle block focus
+     */
+    focus() {
+        if (this.input && !this.readOnly) {
+            // Ensure element is editable before focusing
+            this.input.contentEditable = true;
+            this.input.focus();
+            
+            // Move cursor to end
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(this.input);
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
+    /**
+     * Check if block is focusable
+     */
+    get isFocusable() {
+        return !this.readOnly;
+    }
+
+    /**
+     * Cleanup when block is destroyed
+     */
+    destroy() {
+        if (this.input) {
+            // Remove all event listeners we added
+            this.input.removeEventListener('input', this.onInput);
+            this.input.removeEventListener('keydown', this.onKeydown);
+            this.input.removeEventListener('paste', this.onPasteHandler);
+            this.input.removeEventListener('focus', this.onFocus);
+            this.input.removeEventListener('blur', this.onBlur);
+            this.input.removeEventListener('click', this.onClick);
+        }
     }
 
     /**

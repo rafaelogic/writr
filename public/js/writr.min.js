@@ -1,6 +1,494 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 16:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony exports ContentCaptureHandler, contentCaptureHandler */
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/**
+ * Content Capture Utilities for Writr Editor
+ * 
+ * Ensures all editor content is properly captured in hidden inputs
+ * without interfering with form submission handling
+ * @version 1.0.0
+ */
+/**
+ * ContentCaptureHandler class
+ * Manages content capture for editors without handling form submissions
+ */
+var ContentCaptureHandler = /*#__PURE__*/function () {
+  function ContentCaptureHandler() {
+    _classCallCheck(this, ContentCaptureHandler);
+    this.editors = new Map();
+    this.setupAutoSave();
+  }
+
+  /**
+   * Register an editor instance for content capture
+   * @param {string} editorId - The editor ID
+   * @param {WritrEditor} editor - The editor instance
+   * @param {string} inputId - The hidden input ID
+   */
+  return _createClass(ContentCaptureHandler, [{
+    key: "registerEditor",
+    value: function registerEditor(editorId, editor, inputId) {
+      this.editors.set(editorId, {
+        editor: editor,
+        inputId: inputId,
+        lastSaved: null,
+        hasUnsavedChanges: false
+      });
+
+      // Set up editor-specific listeners
+      this.setupEditorListeners(editorId, editor);
+    }
+
+    /**
+     * Setup editor-specific event listeners
+     * @param {string} editorId - The editor ID
+     * @param {WritrEditor} editor - The editor instance
+     */
+  }, {
+    key: "setupEditorListeners",
+    value: function setupEditorListeners(editorId, editor) {
+      var _this = this;
+      var editorData = this.editors.get(editorId);
+      if (!editorData) return;
+
+      // Listen for content changes
+      editor.on('change', /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(data) {
+          return _regenerator().w(function (_context) {
+            while (1) switch (_context.n) {
+              case 0:
+                editorData.hasUnsavedChanges = true;
+                _context.n = 1;
+                return _this.updateHiddenInput(editorId, data);
+              case 1:
+                return _context.a(2);
+            }
+          }, _callee);
+        }));
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
+
+      // Listen for manual saves
+      editor.on('save', /*#__PURE__*/function () {
+        var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(data) {
+          return _regenerator().w(function (_context2) {
+            while (1) switch (_context2.n) {
+              case 0:
+                editorData.lastSaved = Date.now();
+                editorData.hasUnsavedChanges = false;
+                _context2.n = 1;
+                return _this.updateHiddenInput(editorId, data);
+              case 1:
+                return _context2.a(2);
+            }
+          }, _callee2);
+        }));
+        return function (_x2) {
+          return _ref2.apply(this, arguments);
+        };
+      }());
+
+      // Listen for focus/blur events to ensure content is captured
+      editor.on('blur', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+        return _regenerator().w(function (_context3) {
+          while (1) switch (_context3.n) {
+            case 0:
+              _context3.n = 1;
+              return _this.captureEditorContent(editorId);
+            case 1:
+              return _context3.a(2);
+          }
+        }, _callee3);
+      })));
+    }
+
+    /**
+     * Setup auto-save functionality (non-intrusive)
+     */
+  }, {
+    key: "setupAutoSave",
+    value: function setupAutoSave() {
+      var _this2 = this;
+      // Periodically capture editor content to hidden inputs
+      setInterval(function () {
+        _this2.captureAllEditorContent();
+      }, 10000); // Capture every 10 seconds
+    }
+
+    /**
+     * Capture content for a specific editor
+     * @param {string} editorId - The editor ID
+     */
+  }, {
+    key: "captureEditorContent",
+    value: (function () {
+      var _captureEditorContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(editorId) {
+        var editorData, content, _t;
+        return _regenerator().w(function (_context4) {
+          while (1) switch (_context4.p = _context4.n) {
+            case 0:
+              editorData = this.editors.get(editorId);
+              if (editorData) {
+                _context4.n = 1;
+                break;
+              }
+              return _context4.a(2);
+            case 1:
+              _context4.p = 1;
+              _context4.n = 2;
+              return editorData.editor.save();
+            case 2:
+              content = _context4.v;
+              _context4.n = 3;
+              return this.updateHiddenInput(editorId, content);
+            case 3:
+              editorData.lastSaved = Date.now();
+              editorData.hasUnsavedChanges = false;
+              _context4.n = 5;
+              break;
+            case 4:
+              _context4.p = 4;
+              _t = _context4.v;
+              console.error("Error capturing content for editor ".concat(editorId, ":"), _t);
+              // Don't throw - we don't want to interrupt user workflow
+            case 5:
+              return _context4.a(2);
+          }
+        }, _callee4, this, [[1, 4]]);
+      }));
+      function captureEditorContent(_x3) {
+        return _captureEditorContent.apply(this, arguments);
+      }
+      return captureEditorContent;
+    }()
+    /**
+     * Update the hidden input field with editor content
+     * @param {string} editorId - The editor ID
+     * @param {Object} content - The editor content
+     */
+    )
+  }, {
+    key: "updateHiddenInput",
+    value: (function () {
+      var _updateHiddenInput = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(editorId, content) {
+        var editorData, hiddenInput, jsonContent;
+        return _regenerator().w(function (_context5) {
+          while (1) switch (_context5.n) {
+            case 0:
+              editorData = this.editors.get(editorId);
+              if (editorData) {
+                _context5.n = 1;
+                break;
+              }
+              return _context5.a(2);
+            case 1:
+              hiddenInput = document.getElementById(editorData.inputId);
+              if (hiddenInput) {
+                _context5.n = 2;
+                break;
+              }
+              console.warn("Hidden input not found for editor ".concat(editorId));
+              return _context5.a(2);
+            case 2:
+              try {
+                // Ensure content is valid JSON
+                jsonContent = typeof content === 'string' ? content : JSON.stringify(content); // Validate that it's proper JSON
+                JSON.parse(jsonContent);
+
+                // Update the hidden input
+                hiddenInput.value = jsonContent;
+
+                // Trigger change event for any listeners
+                hiddenInput.dispatchEvent(new Event('change', {
+                  bubbles: true
+                }));
+              } catch (error) {
+                console.error("Error updating hidden input for editor ".concat(editorId, ":"), error);
+              }
+            case 3:
+              return _context5.a(2);
+          }
+        }, _callee5, this);
+      }));
+      function updateHiddenInput(_x4, _x5) {
+        return _updateHiddenInput.apply(this, arguments);
+      }
+      return updateHiddenInput;
+    }()
+    /**
+     * Capture content for all editors
+     */
+    )
+  }, {
+    key: "captureAllEditorContent",
+    value: (function () {
+      var _captureAllEditorContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
+        var _iterator, _step, _step$value, editorId, editorData, _t2;
+        return _regenerator().w(function (_context6) {
+          while (1) switch (_context6.p = _context6.n) {
+            case 0:
+              _iterator = _createForOfIteratorHelper(this.editors);
+              _context6.p = 1;
+              _iterator.s();
+            case 2:
+              if ((_step = _iterator.n()).done) {
+                _context6.n = 4;
+                break;
+              }
+              _step$value = _slicedToArray(_step.value, 2), editorId = _step$value[0], editorData = _step$value[1];
+              if (!editorData.hasUnsavedChanges) {
+                _context6.n = 3;
+                break;
+              }
+              _context6.n = 3;
+              return this.captureEditorContent(editorId);
+            case 3:
+              _context6.n = 2;
+              break;
+            case 4:
+              _context6.n = 6;
+              break;
+            case 5:
+              _context6.p = 5;
+              _t2 = _context6.v;
+              _iterator.e(_t2);
+            case 6:
+              _context6.p = 6;
+              _iterator.f();
+              return _context6.f(6);
+            case 7:
+              return _context6.a(2);
+          }
+        }, _callee6, this, [[1, 5, 6, 7]]);
+      }));
+      function captureAllEditorContent() {
+        return _captureAllEditorContent.apply(this, arguments);
+      }
+      return captureAllEditorContent;
+    }()
+    /**
+     * Force capture content for all editors (useful before AJAX submissions)
+     */
+    )
+  }, {
+    key: "forceCapturAllEditors",
+    value: (function () {
+      var _forceCapturAllEditors = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+        var _this3 = this;
+        var capturePromises;
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.n) {
+            case 0:
+              capturePromises = Array.from(this.editors.keys()).map(function (editorId) {
+                return _this3.captureEditorContent(editorId);
+              });
+              _context7.n = 1;
+              return Promise.all(capturePromises);
+            case 1:
+              return _context7.a(2);
+          }
+        }, _callee7, this);
+      }));
+      function forceCapturAllEditors() {
+        return _forceCapturAllEditors.apply(this, arguments);
+      }
+      return forceCapturAllEditors;
+    }()
+    /**
+     * Get editor content without affecting hidden input
+     * @param {string} editorId - The editor ID
+     * @returns {Object|null} Editor content or null if not found
+     */
+    )
+  }, {
+    key: "getEditorContent",
+    value: (function () {
+      var _getEditorContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(editorId) {
+        var editorData, _t3;
+        return _regenerator().w(function (_context8) {
+          while (1) switch (_context8.p = _context8.n) {
+            case 0:
+              editorData = this.editors.get(editorId);
+              if (editorData) {
+                _context8.n = 1;
+                break;
+              }
+              return _context8.a(2, null);
+            case 1:
+              _context8.p = 1;
+              _context8.n = 2;
+              return editorData.editor.save();
+            case 2:
+              return _context8.a(2, _context8.v);
+            case 3:
+              _context8.p = 3;
+              _t3 = _context8.v;
+              console.error("Error getting content for editor ".concat(editorId, ":"), _t3);
+              return _context8.a(2, null);
+          }
+        }, _callee8, this, [[1, 3]]);
+      }));
+      function getEditorContent(_x6) {
+        return _getEditorContent.apply(this, arguments);
+      }
+      return getEditorContent;
+    }()
+    /**
+     * Get all editor contents
+     * @returns {Object} Object with editor IDs as keys and content as values
+     */
+    )
+  }, {
+    key: "getAllEditorContents",
+    value: (function () {
+      var _getAllEditorContents = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
+        var contents, _iterator2, _step2, _step2$value, editorId, _t4;
+        return _regenerator().w(function (_context9) {
+          while (1) switch (_context9.p = _context9.n) {
+            case 0:
+              contents = {};
+              _iterator2 = _createForOfIteratorHelper(this.editors);
+              _context9.p = 1;
+              _iterator2.s();
+            case 2:
+              if ((_step2 = _iterator2.n()).done) {
+                _context9.n = 5;
+                break;
+              }
+              _step2$value = _slicedToArray(_step2.value, 1), editorId = _step2$value[0];
+              _context9.n = 3;
+              return this.getEditorContent(editorId);
+            case 3:
+              contents[editorId] = _context9.v;
+            case 4:
+              _context9.n = 2;
+              break;
+            case 5:
+              _context9.n = 7;
+              break;
+            case 6:
+              _context9.p = 6;
+              _t4 = _context9.v;
+              _iterator2.e(_t4);
+            case 7:
+              _context9.p = 7;
+              _iterator2.f();
+              return _context9.f(7);
+            case 8:
+              return _context9.a(2, contents);
+          }
+        }, _callee9, this, [[1, 6, 7, 8]]);
+      }));
+      function getAllEditorContents() {
+        return _getAllEditorContents.apply(this, arguments);
+      }
+      return getAllEditorContents;
+    }()
+    /**
+     * Check if any editor has unsaved changes
+     * @returns {boolean} True if there are unsaved changes
+     */
+    )
+  }, {
+    key: "hasUnsavedChanges",
+    value: function hasUnsavedChanges() {
+      var _iterator3 = _createForOfIteratorHelper(this.editors),
+        _step3;
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var _step3$value = _slicedToArray(_step3.value, 2),
+            editorData = _step3$value[1];
+          if (editorData.hasUnsavedChanges) {
+            return true;
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+      return false;
+    }
+
+    /**
+     * Remove an editor from tracking
+     * @param {string} editorId - The editor ID
+     */
+  }, {
+    key: "unregisterEditor",
+    value: function unregisterEditor(editorId) {
+      this.editors["delete"](editorId);
+    }
+
+    /**
+     * Clear all registered editors
+     */
+  }, {
+    key: "clearAllEditors",
+    value: function clearAllEditors() {
+      this.editors.clear();
+    }
+
+    /**
+     * Get list of registered editor IDs
+     * @returns {Array} Array of editor IDs
+     */
+  }, {
+    key: "getRegisteredEditorIds",
+    value: function getRegisteredEditorIds() {
+      return Array.from(this.editors.keys());
+    }
+
+    /**
+     * Check if an editor is registered
+     * @param {string} editorId - The editor ID
+     * @returns {boolean} True if editor is registered
+     */
+  }, {
+    key: "isEditorRegistered",
+    value: function isEditorRegistered(editorId) {
+      return this.editors.has(editorId);
+    }
+  }]);
+}(); // Create global instance
+var contentCaptureHandler = new ContentCaptureHandler();
+
+// Export for module usage
+/* harmony default export */ __webpack_exports__.Ay = (ContentCaptureHandler);
+
+
+// Make available globally
+if (typeof window !== 'undefined') {
+  window.WritrContentCaptureHandler = ContentCaptureHandler;
+  window.writrContentCaptureHandler = contentCaptureHandler;
+}
+
+/***/ }),
+
 /***/ 21:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -317,9 +805,10 @@ var ParagraphTool = /*#__PURE__*/function () {
   return _createClass(ParagraphTool, [{
     key: "render",
     value: function render() {
+      var _this = this;
       this.wrapper = document.createElement('div');
       this.wrapper.className = 'writr-paragraph-wrapper';
-      this.element = document.createElement('p');
+      this.element = document.createElement('div');
       this.element.className = 'writr-paragraph';
       this.element.contentEditable = !this.readOnly;
       this.element.innerHTML = this.data.text;
@@ -332,11 +821,30 @@ var ParagraphTool = /*#__PURE__*/function () {
       // Set alignment
       this.element.style.textAlign = this.data.alignment;
 
-      // Add event listeners
+      // Ensure element is focusable and editable
       if (!this.readOnly) {
+        this.element.style.outline = 'none';
+        this.element.style.border = 'none';
+        this.element.style.minHeight = '1.2em';
+        this.element.style.cursor = 'text';
+        this.element.style.userSelect = 'text';
+        this.element.style.webkitUserSelect = 'text';
+        this.element.style.mozUserSelect = 'text';
+
+        // Add event listeners
         this.element.addEventListener('input', this.onInput.bind(this));
         this.element.addEventListener('paste', this.onPaste.bind(this));
         this.element.addEventListener('keydown', this.onKeyDown.bind(this));
+        this.element.addEventListener('focus', this.onFocus.bind(this));
+        this.element.addEventListener('blur', this.onBlur.bind(this));
+
+        // Ensure contentEditable is always true for this element
+        this.element.addEventListener('click', function () {
+          if (!_this.readOnly) {
+            _this.element.contentEditable = true;
+            _this.element.focus();
+          }
+        });
       }
       this.wrapper.appendChild(this.element);
       return this.wrapper;
@@ -356,6 +864,28 @@ var ParagraphTool = /*#__PURE__*/function () {
       } else {
         this.element.removeAttribute('data-placeholder');
       }
+    }
+
+    /**
+     * Handle focus event
+     */
+  }, {
+    key: "onFocus",
+    value: function onFocus() {
+      // Ensure element remains editable on focus
+      if (!this.readOnly) {
+        this.element.contentEditable = true;
+      }
+    }
+
+    /**
+     * Handle blur event
+     */
+  }, {
+    key: "onBlur",
+    value: function onBlur() {
+      // Save content when element loses focus
+      this.data.text = this.element.innerHTML;
     }
 
     /**
@@ -433,7 +963,7 @@ var ParagraphTool = /*#__PURE__*/function () {
      * @returns {Array} settings
      */
     function renderSettings() {
-      var _this = this;
+      var _this2 = this;
       var settings = [{
         name: 'left',
         icon: "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\">\n                    <path d=\"M1 3h14v2H1V3zm0 4h10v2H1V7zm0 4h14v2H1v-2z\"/>\n                </svg>",
@@ -441,8 +971,8 @@ var ParagraphTool = /*#__PURE__*/function () {
         toggle: true,
         isActive: this.data.alignment === 'left',
         onActivate: function onActivate() {
-          _this.data.alignment = 'left';
-          _this.element.style.textAlign = 'left';
+          _this2.data.alignment = 'left';
+          _this2.element.style.textAlign = 'left';
         }
       }, {
         name: 'center',
@@ -451,8 +981,8 @@ var ParagraphTool = /*#__PURE__*/function () {
         toggle: true,
         isActive: this.data.alignment === 'center',
         onActivate: function onActivate() {
-          _this.data.alignment = 'center';
-          _this.element.style.textAlign = 'center';
+          _this2.data.alignment = 'center';
+          _this2.element.style.textAlign = 'center';
         }
       }, {
         name: 'right',
@@ -461,8 +991,8 @@ var ParagraphTool = /*#__PURE__*/function () {
         toggle: true,
         isActive: this.data.alignment === 'right',
         onActivate: function onActivate() {
-          _this.data.alignment = 'right';
-          _this.element.style.textAlign = 'right';
+          _this2.data.alignment = 'right';
+          _this2.element.style.textAlign = 'right';
         }
       }];
       return settings;
@@ -479,8 +1009,26 @@ var ParagraphTool = /*#__PURE__*/function () {
         this.element.removeEventListener('input', this.onInput);
         this.element.removeEventListener('paste', this.onPaste);
         this.element.removeEventListener('keydown', this.onKeyDown);
+        this.element.removeEventListener('focus', this.onFocus);
+        this.element.removeEventListener('blur', this.onBlur);
       }
     }
+
+    /**
+     * Focus the tool element
+     */
+  }, {
+    key: "focus",
+    value: function focus() {
+      if (this.element && !this.readOnly) {
+        this.element.contentEditable = true;
+        this.element.focus();
+      }
+    }
+
+    /**
+     * Check if tool can be focused
+     */
   }], [{
     key: "toolbox",
     get:
@@ -528,6 +1076,11 @@ var ParagraphTool = /*#__PURE__*/function () {
           }
         }
       };
+    }
+  }, {
+    key: "isFocusable",
+    get: function get() {
+      return true;
     }
   }]);
 }();
@@ -3751,6 +4304,355 @@ var QuoteTool = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ 224:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   captureAllWritrContent: function() { return /* binding */ captureAllWritrContent; },
+/* harmony export */   captureWritrContent: function() { return /* binding */ captureWritrContent; },
+/* harmony export */   captureWritrContentInForm: function() { return /* binding */ captureWritrContentInForm; },
+/* harmony export */   getAllWritrContent: function() { return /* binding */ getAllWritrContent; },
+/* harmony export */   getRegisteredWritrEditors: function() { return /* binding */ getRegisteredWritrEditors; },
+/* harmony export */   getWritrContent: function() { return /* binding */ getWritrContent; },
+/* harmony export */   hasUnsavedWritrChanges: function() { return /* binding */ hasUnsavedWritrChanges; },
+/* harmony export */   submitFormWithWritr: function() { return /* binding */ submitFormWithWritr; }
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+/**
+ * Writr Helper Utilities
+ * 
+ * Utility functions to help developers integrate Writr editors with their forms
+ * @version 1.0.0
+ */
+
+/**
+ * Capture all Writr editor content in the current page
+ * Useful before AJAX form submissions
+ * 
+ * @returns {Promise<boolean>} True if all content was captured successfully
+ */
+function captureAllWritrContent() {
+  return _captureAllWritrContent.apply(this, arguments);
+}
+
+/**
+ * Capture content for a specific Writr editor
+ * 
+ * @param {string} editorId - The ID of the editor
+ * @returns {Promise<boolean>} True if content was captured successfully
+ */
+function _captureAllWritrContent() {
+  _captureAllWritrContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+    var _t;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          if (!(typeof window === 'undefined' || !window.writrContentCaptureHandler)) {
+            _context.n = 1;
+            break;
+          }
+          console.warn('Writr content capture handler not available');
+          return _context.a(2, false);
+        case 1:
+          _context.p = 1;
+          _context.n = 2;
+          return window.writrContentCaptureHandler.forceCapturAllEditors();
+        case 2:
+          return _context.a(2, true);
+        case 3:
+          _context.p = 3;
+          _t = _context.v;
+          console.error('Error capturing Writr editor content:', _t);
+          return _context.a(2, false);
+      }
+    }, _callee, null, [[1, 3]]);
+  }));
+  return _captureAllWritrContent.apply(this, arguments);
+}
+function captureWritrContent(_x) {
+  return _captureWritrContent.apply(this, arguments);
+}
+
+/**
+ * Get content from all Writr editors
+ * 
+ * @returns {Promise<Object>} Object with editor IDs as keys and content as values
+ */
+function _captureWritrContent() {
+  _captureWritrContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(editorId) {
+    var _t2;
+    return _regenerator().w(function (_context2) {
+      while (1) switch (_context2.p = _context2.n) {
+        case 0:
+          if (!(typeof window === 'undefined' || !window.writrContentCaptureHandler)) {
+            _context2.n = 1;
+            break;
+          }
+          console.warn('Writr content capture handler not available');
+          return _context2.a(2, false);
+        case 1:
+          if (window.writrContentCaptureHandler.isEditorRegistered(editorId)) {
+            _context2.n = 2;
+            break;
+          }
+          console.warn("Editor ".concat(editorId, " is not registered with content capture handler"));
+          return _context2.a(2, false);
+        case 2:
+          _context2.p = 2;
+          _context2.n = 3;
+          return window.writrContentCaptureHandler.captureEditorContent(editorId);
+        case 3:
+          return _context2.a(2, true);
+        case 4:
+          _context2.p = 4;
+          _t2 = _context2.v;
+          console.error("Error capturing content for editor ".concat(editorId, ":"), _t2);
+          return _context2.a(2, false);
+      }
+    }, _callee2, null, [[2, 4]]);
+  }));
+  return _captureWritrContent.apply(this, arguments);
+}
+function getAllWritrContent() {
+  return _getAllWritrContent.apply(this, arguments);
+}
+
+/**
+ * Get content from a specific Writr editor
+ * 
+ * @param {string} editorId - The ID of the editor
+ * @returns {Promise<Object|null>} Editor content or null if not found
+ */
+function _getAllWritrContent() {
+  _getAllWritrContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+    var _t3;
+    return _regenerator().w(function (_context3) {
+      while (1) switch (_context3.p = _context3.n) {
+        case 0:
+          if (!(typeof window === 'undefined' || !window.writrContentCaptureHandler)) {
+            _context3.n = 1;
+            break;
+          }
+          console.warn('Writr content capture handler not available');
+          return _context3.a(2, {});
+        case 1:
+          _context3.p = 1;
+          _context3.n = 2;
+          return window.writrContentCaptureHandler.getAllEditorContents();
+        case 2:
+          return _context3.a(2, _context3.v);
+        case 3:
+          _context3.p = 3;
+          _t3 = _context3.v;
+          console.error('Error getting all Writr editor content:', _t3);
+          return _context3.a(2, {});
+      }
+    }, _callee3, null, [[1, 3]]);
+  }));
+  return _getAllWritrContent.apply(this, arguments);
+}
+function getWritrContent(_x2) {
+  return _getWritrContent.apply(this, arguments);
+}
+
+/**
+ * Check if any Writr editor has unsaved changes
+ * 
+ * @returns {boolean} True if there are unsaved changes
+ */
+function _getWritrContent() {
+  _getWritrContent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(editorId) {
+    var _t4;
+    return _regenerator().w(function (_context4) {
+      while (1) switch (_context4.p = _context4.n) {
+        case 0:
+          if (!(typeof window === 'undefined' || !window.writrContentCaptureHandler)) {
+            _context4.n = 1;
+            break;
+          }
+          console.warn('Writr content capture handler not available');
+          return _context4.a(2, null);
+        case 1:
+          _context4.p = 1;
+          _context4.n = 2;
+          return window.writrContentCaptureHandler.getEditorContent(editorId);
+        case 2:
+          return _context4.a(2, _context4.v);
+        case 3:
+          _context4.p = 3;
+          _t4 = _context4.v;
+          console.error("Error getting content for editor ".concat(editorId, ":"), _t4);
+          return _context4.a(2, null);
+      }
+    }, _callee4, null, [[1, 3]]);
+  }));
+  return _getWritrContent.apply(this, arguments);
+}
+function hasUnsavedWritrChanges() {
+  if (typeof window === 'undefined' || !window.writrContentCaptureHandler) {
+    return false;
+  }
+  return window.writrContentCaptureHandler.hasUnsavedChanges();
+}
+
+/**
+ * Get list of all registered Writr editor IDs
+ * 
+ * @returns {Array} Array of editor IDs
+ */
+function getRegisteredWritrEditors() {
+  if (typeof window === 'undefined' || !window.writrContentCaptureHandler) {
+    return [];
+  }
+  return window.writrContentCaptureHandler.getRegisteredEditorIds();
+}
+
+/**
+ * Capture Writr content for editors within a specific form
+ * 
+ * @param {HTMLFormElement|string} form - Form element or selector
+ * @returns {Promise<boolean>} True if all content was captured successfully
+ */
+function captureWritrContentInForm(_x3) {
+  return _captureWritrContentInForm.apply(this, arguments);
+}
+
+/**
+ * Enhanced AJAX form submission helper that captures Writr content
+ * 
+ * @param {HTMLFormElement|string} form - Form element or selector
+ * @param {Object} options - AJAX options (url, method, headers, etc.)
+ * @returns {Promise<Response>} Fetch response
+ */
+function _captureWritrContentInForm() {
+  _captureWritrContentInForm = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(form) {
+    var formElement, registeredEditors, editorsInForm, _iterator, _step, editorId, hiddenInput, capturePromises, _t5;
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.p = _context5.n) {
+        case 0:
+          if (!(typeof window === 'undefined' || !window.writrContentCaptureHandler)) {
+            _context5.n = 1;
+            break;
+          }
+          console.warn('Writr content capture handler not available');
+          return _context5.a(2, false);
+        case 1:
+          // Get form element
+          formElement = typeof form === 'string' ? document.querySelector(form) : form;
+          if (formElement) {
+            _context5.n = 2;
+            break;
+          }
+          console.warn('Form element not found');
+          return _context5.a(2, false);
+        case 2:
+          _context5.p = 2;
+          registeredEditors = window.writrContentCaptureHandler.getRegisteredEditorIds();
+          editorsInForm = []; // Find editors within this form
+          _iterator = _createForOfIteratorHelper(registeredEditors);
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              editorId = _step.value;
+              hiddenInput = document.getElementById("".concat(editorId, "-input"));
+              if (hiddenInput && formElement.contains(hiddenInput)) {
+                editorsInForm.push(editorId);
+              }
+            }
+
+            // Capture content for all editors in this form
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+          capturePromises = editorsInForm.map(function (editorId) {
+            return window.writrContentCaptureHandler.captureEditorContent(editorId);
+          });
+          _context5.n = 3;
+          return Promise.all(capturePromises);
+        case 3:
+          return _context5.a(2, true);
+        case 4:
+          _context5.p = 4;
+          _t5 = _context5.v;
+          console.error('Error capturing Writr content in form:', _t5);
+          return _context5.a(2, false);
+      }
+    }, _callee5, null, [[2, 4]]);
+  }));
+  return _captureWritrContentInForm.apply(this, arguments);
+}
+function submitFormWithWritr(_x4) {
+  return _submitFormWithWritr.apply(this, arguments);
+}
+
+// Make helpers available globally
+function _submitFormWithWritr() {
+  _submitFormWithWritr = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(form) {
+    var options,
+      formElement,
+      formData,
+      fetchOptions,
+      url,
+      _args6 = arguments;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.n) {
+        case 0:
+          options = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : {};
+          // Get form element
+          formElement = typeof form === 'string' ? document.querySelector(form) : form;
+          if (formElement) {
+            _context6.n = 1;
+            break;
+          }
+          throw new Error('Form element not found');
+        case 1:
+          _context6.n = 2;
+          return captureWritrContentInForm(formElement);
+        case 2:
+          // Get form data
+          formData = new FormData(formElement); // Prepare fetch options
+          fetchOptions = _objectSpread({
+            method: options.method || formElement.method || 'POST',
+            body: formData,
+            headers: options.headers || {}
+          }, options); // Get URL
+          url = options.url || formElement.action || window.location.href; // Submit with fetch
+          return _context6.a(2, fetch(url, fetchOptions));
+      }
+    }, _callee6);
+  }));
+  return _submitFormWithWritr.apply(this, arguments);
+}
+if (typeof window !== 'undefined') {
+  window.WritrHelpers = {
+    captureAllWritrContent: captureAllWritrContent,
+    captureWritrContent: captureWritrContent,
+    getAllWritrContent: getAllWritrContent,
+    getWritrContent: getWritrContent,
+    hasUnsavedWritrChanges: hasUnsavedWritrChanges,
+    getRegisteredWritrEditors: getRegisteredWritrEditors,
+    captureWritrContentInForm: captureWritrContentInForm,
+    submitFormWithWritr: submitFormWithWritr
+  };
+}
+
+/***/ }),
+
 /***/ 226:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -3961,6 +4863,9 @@ var WritrEditor = /*#__PURE__*/function (_EventEmitter) {
 
       // Set up metadata tracking event listeners
       this.setupMetadataTracking();
+
+      // Update readonly status indicator
+      this.updateReadonlyStatus();
       this.emit('ready', this);
     }
 
@@ -4119,10 +5024,17 @@ var WritrEditor = /*#__PURE__*/function (_EventEmitter) {
               }
               throw new Error('Editor is not ready');
             case 1:
-              _context3.p = 1;
-              _context3.n = 2;
-              return this.editor.save();
+              if (!this.isReadOnly()) {
+                _context3.n = 2;
+                break;
+              }
+              console.warn('Cannot save editor content in read-only mode');
+              return _context3.a(2, null);
             case 2:
+              _context3.p = 2;
+              _context3.n = 3;
+              return this.editor.save();
+            case 3:
               data = _context3.v;
               // Include metadata if requested
               if (options.includeMetadata) {
@@ -4132,15 +5044,22 @@ var WritrEditor = /*#__PURE__*/function (_EventEmitter) {
               }
               this.emit('save', data);
               return _context3.a(2, data);
-            case 3:
-              _context3.p = 3;
+            case 4:
+              _context3.p = 4;
               _t3 = _context3.v;
+              if (!(_t3.message && _t3.message.includes('read-only mode'))) {
+                _context3.n = 5;
+                break;
+              }
+              console.warn('Editor is in read-only mode, skipping save');
+              return _context3.a(2, null);
+            case 5:
               this.emit('error', _t3);
               throw _t3;
-            case 4:
+            case 6:
               return _context3.a(2);
           }
-        }, _callee3, this, [[1, 3]]);
+        }, _callee3, this, [[2, 4]]);
       }));
       function save() {
         return _save.apply(this, arguments);
@@ -4380,9 +5299,11 @@ var WritrEditor = /*#__PURE__*/function (_EventEmitter) {
     key: "setReadOnly",
     value: function setReadOnly(state) {
       if (!this.isReady || !this.editor) {
-        throw new Error('Editor is not ready');
+        return false;
       }
-      return this.editor.readOnly.toggle(state);
+      var result = this.editor.readOnly.toggle(state);
+      this.updateReadonlyStatus();
+      return result;
     }
 
     /**
@@ -4397,7 +5318,27 @@ var WritrEditor = /*#__PURE__*/function (_EventEmitter) {
       return this.editor.readOnly.isEnabled;
     }
 
-    // ===========================================
+    /**
+     * Update readonly status indicator
+     */
+  }, {
+    key: "updateReadonlyStatus",
+    value: function updateReadonlyStatus() {
+      var statusElement = document.getElementById("".concat(this.options.holder, "-readonly-status"));
+      var editorElement = document.getElementById(this.options.holder);
+      if (!statusElement || !editorElement) return;
+      if (this.isReadOnly()) {
+        statusElement.style.display = 'block';
+        editorElement.style.borderColor = '#f59e0b';
+        editorElement.style.backgroundColor = '#fffbeb';
+        editorElement.style.opacity = '0.9';
+      } else {
+        statusElement.style.display = 'none';
+        editorElement.style.borderColor = '#e2e8f0';
+        editorElement.style.backgroundColor = 'white';
+        editorElement.style.opacity = '1';
+      }
+    } // ===========================================
     // Toolbar API Methods
     // ===========================================
 
@@ -7979,22 +8920,57 @@ var HeaderTool = /*#__PURE__*/function () {
       // Set the correct heading tag
       this.updateHeadingLevel();
 
-      // Event listeners
-      this.input.addEventListener('input', function () {
-        _this.data.text = _this.input.innerHTML;
-        _this.updateAnchor();
-      });
-      this.input.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
+      // Ensure element is focusable and editable
+      if (!this.readOnly) {
+        this.input.style.outline = 'none';
+        this.input.style.border = 'none';
+        this.input.style.minHeight = '1.2em';
+        this.input.style.cursor = 'text';
+        this.input.style.userSelect = 'text';
+        this.input.style.webkitUserSelect = 'text';
+        this.input.style.mozUserSelect = 'text';
+
+        // Store event handler references for cleanup
+        this.onInput = function () {
+          _this.data.text = _this.input.innerHTML;
+          _this.updateAnchor();
+        };
+        this.onKeydown = function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            _this.api.blocks.insert();
+          }
+        };
+        this.onPasteHandler = function (e) {
           e.preventDefault();
-          _this.api.blocks.insert();
-        }
-      });
-      this.input.addEventListener('paste', function (e) {
-        e.preventDefault();
-        var text = (e.clipboardData || window.clipboardData).getData('text');
-        document.execCommand('insertText', false, text);
-      });
+          var text = (e.clipboardData || window.clipboardData).getData('text');
+          document.execCommand('insertText', false, text);
+        };
+        this.onFocus = function () {
+          // Ensure element remains editable on focus
+          if (!_this.readOnly) {
+            _this.input.contentEditable = true;
+          }
+        };
+        this.onBlur = function () {
+          // Save content when element loses focus
+          _this.data.text = _this.input.innerHTML;
+        };
+        this.onClick = function () {
+          if (!_this.readOnly) {
+            _this.input.contentEditable = true;
+            _this.input.focus();
+          }
+        };
+
+        // Event listeners
+        this.input.addEventListener('input', this.onInput);
+        this.input.addEventListener('keydown', this.onKeydown);
+        this.input.addEventListener('paste', this.onPasteHandler);
+        this.input.addEventListener('focus', this.onFocus);
+        this.input.addEventListener('blur', this.onBlur);
+        this.input.addEventListener('click', this.onClick);
+      }
       wrapper.appendChild(this.input);
       return wrapper;
     }
@@ -8152,6 +9128,53 @@ var HeaderTool = /*#__PURE__*/function () {
           button.classList.remove(_this6.CSS.settingsButtonActive);
         }
       });
+    }
+
+    /**
+     * Handle block focus
+     */
+  }, {
+    key: "focus",
+    value: function focus() {
+      if (this.input && !this.readOnly) {
+        // Ensure element is editable before focusing
+        this.input.contentEditable = true;
+        this.input.focus();
+
+        // Move cursor to end
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(this.input);
+        range.collapse(false);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+
+    /**
+     * Check if block is focusable
+     */
+  }, {
+    key: "isFocusable",
+    get: function get() {
+      return !this.readOnly;
+    }
+
+    /**
+     * Cleanup when block is destroyed
+     */
+  }, {
+    key: "destroy",
+    value: function destroy() {
+      if (this.input) {
+        // Remove all event listeners we added
+        this.input.removeEventListener('input', this.onInput);
+        this.input.removeEventListener('keydown', this.onKeydown);
+        this.input.removeEventListener('paste', this.onPasteHandler);
+        this.input.removeEventListener('focus', this.onFocus);
+        this.input.removeEventListener('blur', this.onBlur);
+        this.input.removeEventListener('click', this.onClick);
+      }
     }
 
     /**
@@ -8937,14 +9960,6 @@ var InlineToolbar = /*#__PURE__*/function () {
       link: {
         "class": LinkInlineTool,
         shortcut: 'CMD+K'
-      },
-      code: {
-        "class": InlineCodeTool,
-        shortcut: 'CMD+SHIFT+C'
-      },
-      underline: {
-        "class": UnderlineInlineTool,
-        shortcut: 'CMD+U'
       }
     };
 
@@ -8991,7 +10006,7 @@ var InlineToolbar = /*#__PURE__*/function () {
     value: function createDefaultHolder() {
       var holder = document.createElement('div');
       holder.className = 'writr-inline-toolbar';
-      holder.style.cssText = "\n            position: absolute;\n            z-index: 1000;\n            display: none;\n            background: white;\n            border: 1px solid #e2e8f0;\n            border-radius: 8px;\n            box-shadow: 0 4px 20px rgba(0,0,0,0.1);\n            padding: 4px;\n            white-space: nowrap;\n        ";
+      holder.style.cssText = "\n            position: absolute;\n            z-index: 1000;\n            display: none;\n            background: white;\n            border: 1px solid #e2e8f0;\n            border-radius: 8px;\n            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n            padding: 4px;\n            white-space: nowrap;\n            backdrop-filter: blur(8px);\n            border: 1px solid rgba(0, 0, 0, 0.1);\n        ";
       document.body.appendChild(holder);
       return holder;
     }
@@ -9242,10 +10257,16 @@ var InlineToolbar = /*#__PURE__*/function () {
       button.className = 'writr-inline-tool-button';
       button.title = tool.title;
       button.setAttribute('data-tool', tool.name);
-      button.style.cssText = "\n            border: none;\n            background: transparent;\n            padding: 8px;\n            margin: 2px;\n            border-radius: 4px;\n            cursor: pointer;\n            color: #374151;\n            font-size: 14px;\n            transition: all 0.15s;\n            display: inline-flex;\n            align-items: center;\n            justify-content: center;\n            min-width: 32px;\n            height: 32px;\n        ";
+      button.style.cssText = "\n            border: none;\n            background: transparent;\n            padding: 8px 12px;\n            margin: 0 2px;\n            border-radius: 6px;\n            cursor: pointer;\n            color: #4b5563;\n            font-size: 14px;\n            font-weight: 500;\n            transition: all 0.15s ease;\n            display: inline-flex;\n            align-items: center;\n            justify-content: center;\n            min-width: 36px;\n            height: 36px;\n            user-select: none;\n        ";
 
-      // Add icon or text
-      if (tool.icon) {
+      // Add icon or text based on tool type
+      if (tool.name === 'bold') {
+        button.innerHTML = '<span style="font-weight: 700; font-size: 16px;">B</span>';
+      } else if (tool.name === 'italic') {
+        button.innerHTML = '<span style="font-style: italic; font-size: 16px;">I</span>';
+      } else if (tool.name === 'link') {
+        button.innerHTML = "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.53 1.53\"></path>\n                <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.53-1.53\"></path>\n            </svg>";
+      } else if (tool.icon) {
         button.innerHTML = tool.icon;
       } else {
         button.textContent = tool.name.charAt(0).toUpperCase();
@@ -9256,7 +10277,8 @@ var InlineToolbar = /*#__PURE__*/function () {
         button.style.backgroundColor = '#f3f4f6';
       });
       button.addEventListener('mouseleave', function () {
-        button.style.backgroundColor = 'transparent';
+        var isActive = _this2.getToolActiveState(tool.name);
+        button.style.backgroundColor = isActive ? '#3b82f6' : 'transparent';
       });
 
       // Add click handler
@@ -9298,6 +10320,22 @@ var InlineToolbar = /*#__PURE__*/function () {
     }
 
     /**
+     * Get active state for a specific tool
+     * @param {string} toolName - Name of tool
+     * @returns {boolean} Active state
+     * @private
+     */
+  }, {
+    key: "getToolActiveState",
+    value: function getToolActiveState(toolName) {
+      var tool = this.tools.get(toolName);
+      if (tool && typeof tool.isActive === 'function') {
+        return tool.isActive();
+      }
+      return false;
+    }
+
+    /**
      * Update active states of all tool buttons
      * @private
      */
@@ -9317,7 +10355,7 @@ var InlineToolbar = /*#__PURE__*/function () {
             button.style.color = 'white';
           } else {
             button.style.backgroundColor = 'transparent';
-            button.style.color = '#374151';
+            button.style.color = '#4b5563';
           }
         }
       });
@@ -9337,18 +10375,29 @@ var InlineToolbar = /*#__PURE__*/function () {
       var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-      // Position toolbar above selection
+      // Make toolbar visible to get its dimensions
+      this.toolbar.style.display = 'block';
+      this.toolbar.style.visibility = 'hidden';
       var toolbarRect = this.toolbar.getBoundingClientRect();
+
+      // Position toolbar below selection (at the bottom)
       var left = rect.left + scrollLeft + rect.width / 2 - toolbarRect.width / 2;
-      var top = rect.top + scrollTop - toolbarRect.height - 10;
+      var top = rect.bottom + scrollTop + 10; // 10px below selection
 
       // Ensure toolbar stays within viewport
       var maxLeft = window.innerWidth - toolbarRect.width - 10;
       var finalLeft = Math.max(10, Math.min(left, maxLeft));
-      var finalTop = Math.max(10, top);
+
+      // If toolbar would go below viewport, show it above selection instead
+      var maxTop = window.innerHeight - toolbarRect.height - 10;
+      var finalTop = top;
+      if (top > maxTop) {
+        finalTop = rect.top + scrollTop - toolbarRect.height - 10;
+      }
+      finalTop = Math.max(10, finalTop);
       this.toolbar.style.left = "".concat(finalLeft, "px");
       this.toolbar.style.top = "".concat(finalTop, "px");
-      this.toolbar.style.display = 'block';
+      this.toolbar.style.visibility = 'visible';
       this.isVisible = true;
       this.updateToolStates();
 
@@ -9580,7 +10629,7 @@ var LinkInlineTool = /*#__PURE__*/function () {
     }
   }]);
 }();
-var InlineCodeTool = /*#__PURE__*/function () {
+var InlineCodeTool = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   function InlineCodeTool(_ref4) {
     var api = _ref4.api;
     _classCallCheck(this, InlineCodeTool);
@@ -9629,8 +10678,8 @@ var InlineCodeTool = /*#__PURE__*/function () {
       return 'Code';
     }
   }]);
-}();
-var UnderlineInlineTool = /*#__PURE__*/function () {
+}()));
+var UnderlineInlineTool = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   function UnderlineInlineTool(_ref5) {
     var api = _ref5.api;
     _classCallCheck(this, UnderlineInlineTool);
@@ -9669,7 +10718,7 @@ var UnderlineInlineTool = /*#__PURE__*/function () {
       return 'Underline';
     }
   }]);
-}();
+}()));
 
 /***/ }),
 
@@ -26596,6 +27645,8 @@ var BlockAPI = /*#__PURE__*/function () {
 /* harmony import */ var _utils_theme_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(172);
 /* harmony import */ var _utils_exporter_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(288);
 /* harmony import */ var _utils_table_of_contents_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(21);
+/* harmony import */ var _utils_form_submission_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(16);
+/* harmony import */ var _utils_helpers_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(224);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
@@ -26637,6 +27688,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 // Utilities
+
+
 
 
 
@@ -26762,6 +27815,8 @@ Writr.EventEmitter = _editor_utils_EventEmitter_js__WEBPACK_IMPORTED_MODULE_17__
 Writr.ThemeManager = _utils_theme_js__WEBPACK_IMPORTED_MODULE_18__/* ["default"] */ .A;
 Writr.ContentExporter = _utils_exporter_js__WEBPACK_IMPORTED_MODULE_19__/* ["default"] */ .Ay;
 Writr.TableOfContents = _utils_table_of_contents_js__WEBPACK_IMPORTED_MODULE_20__/* ["default"] */ .Ay;
+Writr.ContentCaptureHandler = _utils_form_submission_js__WEBPACK_IMPORTED_MODULE_21__/* ["default"] */ .Ay;
+Writr.helpers = _utils_helpers_js__WEBPACK_IMPORTED_MODULE_22__;
 
 // Export APIs
 Writr.BlockAPI = _editor_api_BlockAPI_js__WEBPACK_IMPORTED_MODULE_1__/* .BlockAPI */ .I;
@@ -26786,6 +27841,11 @@ Writr.tools = {
 if (typeof window !== 'undefined') {
   window.Writr = Writr;
   window.WritrEditor = _editor_WritrEditor_js__WEBPACK_IMPORTED_MODULE_0__/* .WritrEditor */ .g;
+
+  // Initialize global content capture handler
+  if (!window.writrContentCaptureHandler) {
+    window.writrContentCaptureHandler = new _utils_form_submission_js__WEBPACK_IMPORTED_MODULE_21__/* ["default"] */ .Ay();
+  }
 
   // Maintain compatibility with old API
   window.writrEditors = window.writrEditors || {};

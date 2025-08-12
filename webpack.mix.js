@@ -26,6 +26,13 @@ mix.js('resources/js/writr.js', 'public/js/writr.js')
    })
    .disableNotifications();
 
+// Settings UI script
+mix.js('resources/js/settings.js', 'public/js/settings.js')
+   .options({
+       processCssUrls: false,
+       terser: false,
+   });
+
 // Build CSS separately
 mix.sass('resources/sass/writr.scss', 'public/css/writr.css')
    .options({
@@ -55,6 +62,7 @@ if (mix.inProduction()) {
 
     // Create minified versions
     mix.copy('public/js/writr.js', 'public/js/writr.min.js');
+    mix.copy('public/js/settings.js', 'public/js/settings.min.js');
     mix.copy('public/css/writr.css', 'public/css/writr.min.css');
 }
 

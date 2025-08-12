@@ -32,14 +32,6 @@ export class InlineToolbar {
             link: {
                 class: LinkInlineTool,
                 shortcut: 'CMD+K'
-            },
-            code: {
-                class: InlineCodeTool,
-                shortcut: 'CMD+SHIFT+C'
-            },
-            underline: {
-                class: UnderlineInlineTool,
-                shortcut: 'CMD+U'
             }
         };
         
@@ -91,9 +83,11 @@ export class InlineToolbar {
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             padding: 4px;
             white-space: nowrap;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         `;
         
         document.body.appendChild(holder);
@@ -321,22 +315,33 @@ export class InlineToolbar {
         button.style.cssText = `
             border: none;
             background: transparent;
-            padding: 8px;
-            margin: 2px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 0 2px;
+            border-radius: 6px;
             cursor: pointer;
-            color: #374151;
+            color: #4b5563;
             font-size: 14px;
-            transition: all 0.15s;
+            font-weight: 500;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 32px;
-            height: 32px;
+            min-width: 36px;
+            height: 36px;
+            user-select: none;
         `;
         
-        // Add icon or text
-        if (tool.icon) {
+        // Add icon or text based on tool type
+        if (tool.name === 'bold') {
+            button.innerHTML = '<span style="font-weight: 700; font-size: 16px;">B</span>';
+        } else if (tool.name === 'italic') {
+            button.innerHTML = '<span style="font-style: italic; font-size: 16px;">I</span>';
+        } else if (tool.name === 'link') {
+            button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.53 1.53"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.53-1.53"></path>
+            </svg>`;
+        } else if (tool.icon) {
             button.innerHTML = tool.icon;
         } else {
             button.textContent = tool.name.charAt(0).toUpperCase();
@@ -348,7 +353,8 @@ export class InlineToolbar {
         });
         
         button.addEventListener('mouseleave', () => {
-            button.style.backgroundColor = 'transparent';
+            const isActive = this.getToolActiveState(tool.name);
+            button.style.backgroundColor = isActive ? '#3b82f6' : 'transparent';
         });
         
         // Add click handler
@@ -389,6 +395,20 @@ export class InlineToolbar {
     }
 
     /**
+     * Get active state for a specific tool
+     * @param {string} toolName - Name of tool
+     * @returns {boolean} Active state
+     * @private
+     */
+    getToolActiveState(toolName) {
+        const tool = this.tools.get(toolName);
+        if (tool && typeof tool.isActive === 'function') {
+            return tool.isActive();
+        }
+        return false;
+    }
+
+    /**
      * Update active states of all tool buttons
      * @private
      */
@@ -409,7 +429,7 @@ export class InlineToolbar {
                     button.style.color = 'white';
                 } else {
                     button.style.backgroundColor = 'transparent';
-                    button.style.color = '#374151';
+                    button.style.color = '#4b5563';
                 }
             }
         });
@@ -427,19 +447,30 @@ export class InlineToolbar {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         
-        // Position toolbar above selection
+        // Make toolbar visible to get its dimensions
+        this.toolbar.style.display = 'block';
+        this.toolbar.style.visibility = 'hidden';
         const toolbarRect = this.toolbar.getBoundingClientRect();
+        
+        // Position toolbar below selection (at the bottom)
         const left = rect.left + scrollLeft + (rect.width / 2) - (toolbarRect.width / 2);
-        const top = rect.top + scrollTop - toolbarRect.height - 10;
+        const top = rect.bottom + scrollTop + 10; // 10px below selection
         
         // Ensure toolbar stays within viewport
         const maxLeft = window.innerWidth - toolbarRect.width - 10;
         const finalLeft = Math.max(10, Math.min(left, maxLeft));
-        const finalTop = Math.max(10, top);
+        
+        // If toolbar would go below viewport, show it above selection instead
+        const maxTop = window.innerHeight - toolbarRect.height - 10;
+        let finalTop = top;
+        if (top > maxTop) {
+            finalTop = rect.top + scrollTop - toolbarRect.height - 10;
+        }
+        finalTop = Math.max(10, finalTop);
         
         this.toolbar.style.left = `${finalLeft}px`;
         this.toolbar.style.top = `${finalTop}px`;
-        this.toolbar.style.display = 'block';
+        this.toolbar.style.visibility = 'visible';
         
         this.isVisible = true;
         this.updateToolStates();

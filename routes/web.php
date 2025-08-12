@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Rafaelogic\Writr\Http\Controllers\WritrController;
+use Rafaelogic\Writr\Http\Controllers\WritrSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +62,16 @@ Route::group([
     
     // Health check endpoint
     Route::get('health', [WritrController::class, 'health'])->name('health');
+    
+    // Settings management endpoints
+    Route::get('settings', [WritrSettingsController::class, 'index'])->name('settings.index');
+    Route::put('settings', [WritrSettingsController::class, 'update'])->name('settings.update');
+    Route::post('settings/reset', [WritrSettingsController::class, 'reset'])->name('settings.reset');
+    Route::get('settings/export', [WritrSettingsController::class, 'export'])->name('settings.export');
+    Route::post('settings/import', [WritrSettingsController::class, 'import'])->name('settings.import');
+    
+    // Demo page for testing settings
+    Route::get('demo', function () {
+        return view('writr::demo');
+    })->name('demo');
 });

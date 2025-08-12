@@ -1,6 +1,6 @@
 {
   "name": "writr-editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Frontend assets for Writr - A comprehensive Notion-like editor for Laravel",
   "main": "dist/writr.js",
   "module": "dist/writr.esm.js",

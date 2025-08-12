@@ -24,6 +24,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved mobile performance and touch interactions
 - Better accessibility support and screen reader compatibility
 
+## [1.1.0] - 2025-08-13
+
+### 🚀 Major Features
+- **Enhanced Inline Toolbar**: Redesigned inline toolbar with bottom positioning matching modern editor UX
+- **Content Capture System**: Non-intrusive automatic content capture for form submissions
+- **Improved Block Editability**: Fixed single-line block editability issues for paragraphs and headings
+- **AJAX Form Integration**: Seamless integration with AJAX forms without conflicts
+
+### ✨ Editor Improvements
+- **Inline Toolbar Redesign**: Clean, modern design with Bold (B), Italic (I), and Link tools
+- **Smart Positioning**: Automatic toolbar positioning at bottom of text selections
+- **Enhanced UX**: Smooth animations and improved visual feedback
+- **Tool State Management**: Visual indication of active formatting states
+
+### 🔧 Technical Enhancements
+- **Content Capture Handler**: Global content capture system for all Writr editors
+- **Helper Functions**: Developer-friendly utilities for manual content capture
+- **Event System**: Robust event handling for focus, blur, and selection changes
+- **Memory Management**: Improved cleanup and event listener management
+
+### 🐛 Bug Fixes
+- **Single-line Editability**: Fixed issue where single-line paragraphs and headings became non-editable
+- **Content Editable State**: Ensured contentEditable attribute remains true during interactions
+- **Event Handling**: Improved focus and blur event management for better editing experience
+- **Build System**: Fixed SCSS syntax errors and improved build reliability
+
+### 🛠️ Developer Experience
+- **Helper Utilities**: Global `WritrHelpers` object with content capture functions
+- **Test Functions**: Comprehensive testing utilities for content capture verification
+- **Documentation**: Enhanced demo with content capture examples and test buttons
+- **Error Handling**: Better error reporting and debugging information
+
+### 📚 Documentation Updates
+- **Demo Enhancement**: Updated demo page with content capture examples
+- **Test Integration**: Added test buttons for verifying content capture functionality
+- **Code Examples**: Improved code examples for AJAX and manual form integration
+
+### 🎨 UI/UX Improvements
+- **Modern Design**: Inline toolbar matches contemporary editor design patterns
+- **Visual Feedback**: Enhanced hover states and active tool indicators
+- **Responsive Design**: Better mobile and tablet editing experience
+- **Accessibility**: Improved keyboard navigation and screen reader support
+
+### Breaking Changes
+- None - This release maintains full backward compatibility
+
+### Migration Notes
+- No migration required - all changes are backward compatible
+- Existing inline toolbar configurations will continue to work
+- Content capture is automatically enabled for all editors
+
 ## [1.2.0] - 2025-08-13
 
 ### 🔧 Security & Maintenance
@@ -73,7 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `TROUBLESHOOTING.md` - Content integrated into README
 - Empty asset directories: `/dist`, `/public/fonts`, `/public/icons`, `/resources/assets/*`
 
-## [1.1.0] - 2025-07-20
+## [1.0.1] - 2025-07-20
 
 ### Added
 - **Auto-save Enhancement**: Configurable intervals with smart debouncing
@@ -315,8 +366,8 @@ The first stable release of Writr - a comprehensive Notion-like editor for Larav
 
 | Version | Release Date | Status | Key Features |
 |---------|-------------|--------|--------------|
-| 1.2.0 | 2025-08-13 | ✅ Current | Security updates, project cleanup, enhanced docs |
-| 1.1.0 | 2025-07-20 | ✅ Stable | Auto-save, memory monitoring, performance improvements |
+| 1.1.0 | 2025-08-13 | ✅ Current | Inline toolbar redesign, content capture system, editability fixes |
+| 1.0.1 | 2025-07-20 | ✅ Stable | Auto-save, memory monitoring, performance improvements |
 | 1.0.0 | 2025-01-15 | ✅ Stable | Initial production release with full feature set |
 | 0.9.0 | 2024-12-15 | 🧪 Beta | Community testing release |
 | 0.1.0 | 2024-11-01 | 🔬 Alpha | Initial proof of concept |
@@ -325,15 +376,16 @@ The first stable release of Writr - a comprehensive Notion-like editor for Larav
 
 ## Migration Guides
 
-### Upgrading from 1.1.x to 1.2.x
+### Upgrading from 1.0.x to 1.1.x
 
-No breaking changes. This release focuses on security updates and project cleanup:
+No breaking changes. This release adds new features and improvements:
 
 1. Run `composer update rafaelogic/writr`
 2. Clear application cache: `php artisan cache:clear`
 3. Rebuild frontend assets: `npm run production`
+4. Optional: Test the new inline toolbar and content capture features
 
-### Upgrading from 1.0.x to 1.1.x
+### Upgrading from 1.0.0 to 1.0.1
 
 Minor configuration updates may be needed:
 

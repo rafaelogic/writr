@@ -157,6 +157,9 @@ export class WritrEditor extends EventEmitter {
         // Set up metadata tracking event listeners
         this.setupMetadataTracking();
         
+        // Update readonly status indicator
+        this.updateReadonlyStatus();
+        
         this.emit('ready', this);
     }
 
@@ -269,6 +272,12 @@ export class WritrEditor extends EventEmitter {
             throw new Error('Editor is not ready');
         }
 
+        // Check if editor is in read-only mode
+        if (this.isReadOnly()) {
+            console.warn('Cannot save editor content in read-only mode');
+            return null;
+        }
+
         try {
             const data = await this.editor.save();
             
@@ -283,6 +292,11 @@ export class WritrEditor extends EventEmitter {
             this.emit('save', data);
             return data;
         } catch (error) {
+            // If it's a read-only error, handle it gracefully
+            if (error.message && error.message.includes('read-only mode')) {
+                console.warn('Editor is in read-only mode, skipping save');
+                return null;
+            }
             this.emit('error', error);
             throw error;
         }
@@ -436,10 +450,11 @@ export class WritrEditor extends EventEmitter {
      */
     setReadOnly(state) {
         if (!this.isReady || !this.editor) {
-            throw new Error('Editor is not ready');
+            return false;
         }
-
-        return this.editor.readOnly.toggle(state);
+        const result = this.editor.readOnly.toggle(state);
+        this.updateReadonlyStatus();
+        return result;
     }
 
     /**
@@ -449,11 +464,30 @@ export class WritrEditor extends EventEmitter {
         if (!this.isReady || !this.editor) {
             return false;
         }
-
         return this.editor.readOnly.isEnabled;
     }
 
-    // ===========================================
+    /**
+     * Update readonly status indicator
+     */
+    updateReadonlyStatus() {
+        const statusElement = document.getElementById(`${this.options.holder}-readonly-status`);
+        const editorElement = document.getElementById(this.options.holder);
+        
+        if (!statusElement || !editorElement) return;
+        
+        if (this.isReadOnly()) {
+            statusElement.style.display = 'block';
+            editorElement.style.borderColor = '#f59e0b';
+            editorElement.style.backgroundColor = '#fffbeb';
+            editorElement.style.opacity = '0.9';
+        } else {
+            statusElement.style.display = 'none';
+            editorElement.style.borderColor = '#e2e8f0';
+            editorElement.style.backgroundColor = 'white';
+            editorElement.style.opacity = '1';
+        }
+    }    // ===========================================
     // Toolbar API Methods
     // ===========================================
 

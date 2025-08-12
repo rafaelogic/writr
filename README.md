@@ -1,6 +1,6 @@
 # Writr - Laravel Notion-like Editor Package
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![Laravel](https://img.shields.io/badge/Laravel-10%2B%20%7C%2011%20%7C%2012-red.svg)
 ![PHP](https://img.shields.io/badge/PHP-8.1%2B-purple.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -19,6 +19,9 @@ A production-ready, comprehensive Notion-like editor for Laravel applications us
 - ✅ **Keyboard Shortcuts**: Full keyboard navigation and editing support
 
 ### 🚀 Advanced Features
+- ✅ **Enhanced Inline Toolbar**: Modern inline toolbar with bottom positioning for text formatting
+- ✅ **Content Capture System**: Automatic content capture for seamless form submissions
+- ✅ **Settings UI**: Professional settings interface for all configuration options
 - ✅ **Auto-save**: Configurable automatic content saving with debouncing
 - ✅ **Table of Contents**: Auto-generated navigation from document headers
 - ✅ **Word & Character Count**: Real-time statistics display
@@ -192,7 +195,26 @@ This approach ensures the editor works out-of-the-box without requiring publishi
 
 ## ⚙️ Configuration
 
-The configuration file provides extensive customization options. Publish it with:
+The configuration file provides extensive customization options. You can manage settings in two ways:
+
+### 🎨 Settings UI (Recommended)
+
+Access the visual settings interface at `/writr/settings` for an intuitive configuration experience:
+
+- **Professional Interface**: Modern, responsive settings UI with dark mode support
+- **Live Validation**: Real-time input validation with helpful error messages  
+- **Import/Export**: Backup and restore settings as JSON files
+- **Keyboard Shortcuts**: Ctrl+S to save, Ctrl+Shift+R to reset
+- **Organized Sections**: Editor, Tools, Features, Theme, Security, and Performance settings
+
+```bash
+# Visit in your browser
+https://yourapp.com/writr/settings
+```
+
+### 📄 Configuration File
+
+For programmatic or advanced configuration, publish the config file:
 
 ```bash
 php artisan vendor:publish --tag=writr-config
