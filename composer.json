@@ -6,10 +6,18 @@
     "keywords": ["laravel", "editor", "notion", "wysiwyg", "editorjs", "blade", "component"],
     "authors": [
         {
-            "name": "Rafael",
-            "email": "rafael@example.com"
+            "name": "Rafa Rafael",
+            "email": "40rrafael@gmail.com",
+            "homepage": "https://github.com/rafaelogic",
+            "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/rafaelogic/writr",
+    "support": {
+        "issues": "https://github.com/rafaelogic/writr/issues",
+        "source": "https://github.com/rafaelogic/writr",
+        "docs": "https://github.com/rafaelogic/writr#readme"
+    },
     "require": {
         "php": "^8.1",
         "illuminate/support": "^10.0|^11.0|^12.0",
@@ -47,7 +55,7 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
         "test": "vendor/bin/phpunit",

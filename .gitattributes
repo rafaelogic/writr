@@ -1,0 +1,47 @@
+# Git attributes for package distribution
+
+# Exclude development files from package archives
+/.github export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore
+/tests export-ignore
+/docs export-ignore
+/node_modules export-ignore
+/package-lock.json export-ignore
+/package.json export-ignore
+/webpack.mix.js export-ignore
+/webpack.bundle.config.js export-ignore
+/tailwind.config.js export-ignore
+/vitest.config.js export-ignore
+/phpunit.xml export-ignore
+/PACKAGIST_PUBLISHING.md export-ignore
+/RELEASE_NOTES_*.md export-ignore
+
+# Include these important files
+/README.md export-ignore
+/CHANGELOG.md export-ignore
+/LICENSE export-ignore
+/composer.json export-ignore
+/composer.lock export-ignore
+
+# Actually, let's include README, CHANGELOG, and LICENSE
+/README.md -export-ignore
+/CHANGELOG.md -export-ignore  
+/LICENSE -export-ignore
+
+# Ensure line endings are handled correctly
+* text=auto
+*.php text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.xml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary

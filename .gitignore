@@ -1,13 +1,26 @@
 # Exclude TestApp from package
-/tests/TestApp/
+/tests/TestApp
 
 # Dependencies
 /node_modules/
 /vendor/
 
-# Build outputs  
-/public/js/writr-bundle.js
-/public/js/writr-bundle.js.LICENSE.txt
+# Development files
+.env
+.env.*
+!.env.example
+
+# Testing artifacts
+coverage/
+.phpunit.result.cache
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
 # OS generated files
 .DS_Store
@@ -18,49 +31,11 @@
 ehthumbs.db
 Thumbs.db
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.log
 
 # Laravel Mix
 /public/hot
@@ -68,10 +43,14 @@ jspm_packages/
 /storage/*.key
 /public/mix-manifest.json
 
-# Composer
-composer.phar
-composer.lock
+# Compiled assets (these are built during installation)
+/public/js/writr-bundle.js
+/public/js/writr-bundle.js.LICENSE.txt
 
-# Package lock files (keep package.json but ignore locks for libraries)
+# Package lock files (for libraries, we ignore these)
 package-lock.json
 yarn.lock
+
+# Temporary files
+*.tmp
+*.temp
