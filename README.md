@@ -7,6 +7,70 @@
 
 A production-ready, comprehensive Notion-like editor for Laravel applications using Editor.js. Features a complete block-based editing experience with advanced tools, file handling, and seamless Laravel integration.
 
+## 📖 Table of Contents
+
+- [🌐 Live Demo](#-live-demo)
+- [✨ Features](#-features)
+  - [📝 Core Editor Capabilities](#-core-editor-capabilities)
+  - [🚀 Advanced Features](#-advanced-features)
+  - [🔧 Laravel Integration](#-laravel-integration)
+  - [🏗️ Architecture & Development](#️-architecture--development)
+- [📦 Installation](#-installation)
+  - [Requirements](#requirements)
+  - [1. Install via Composer](#1-install-via-composer)
+  - [2. Publish Assets (Optional)](#2-publish-assets-optional)
+  - [3. Setup Layout](#3-setup-layout)
+- [🚀 Quick Start](#-quick-start)
+  - [Basic Usage](#basic-usage)
+  - [With Laravel Validation](#with-laravel-validation)
+  - [Advanced Configuration](#advanced-configuration)
+  - [Component Architecture](#component-architecture)
+- [⚙️ Configuration](#️-configuration)
+  - [🎨 Settings UI (Recommended)](#-settings-ui-recommended)
+  - [📄 Configuration File](#-configuration-file)
+  - [Editor Settings](#editor-settings)
+  - [Tools Configuration](#tools-configuration)
+  - [Feature Configuration](#feature-configuration)
+- [📁 File Upload System](#-file-upload-system)
+  - [Upload Configuration](#upload-configuration)
+  - [Custom Upload Handler](#custom-upload-handler)
+  - [Upload Progress & Validation](#upload-progress--validation)
+- [🔄 Content Processing](#-content-processing)
+  - [Working with Content](#working-with-content)
+  - [Content Validation](#content-validation)
+  - [Search Integration](#search-integration)
+- [Advanced Features](#advanced-features)
+  - [Auto-save](#auto-save)
+  - [Dark Mode](#dark-mode)
+  - [Custom Styling](#custom-styling)
+- [API Endpoints](#api-endpoints)
+- [🎨 Frontend Integration](#-frontend-integration)
+  - [Direct JavaScript Usage](#direct-javascript-usage)
+  - [Custom Tools](#custom-tools)
+  - [Event Handling](#event-handling)
+- [🏗️ Development & Building](#️-development--building)
+  - [Development Setup](#development-setup)
+  - [Building Assets](#building-assets)
+  - [Testing](#testing)
+  - [Project Structure](#project-structure)
+- [🚀 Performance & Optimization](#-performance--optimization)
+  - [Performance Features](#performance-features)
+  - [Optimization Tips](#optimization-tips)
+  - [Memory Management](#memory-management)
+  - [Bundle Analysis](#bundle-analysis)
+- [🌍 Browser Compatibility](#-browser-compatibility)
+- [🤝 Contributing](#-contributing)
+  - [Development Setup](#development-setup-1)
+  - [Contribution Guidelines](#contribution-guidelines)
+  - [Development Workflow](#development-workflow)
+  - [Areas for Contribution](#areas-for-contribution)
+- [📄 License](#-license)
+- [🆘 Support & Community](#-support--community)
+  - [Documentation & Resources](#documentation--resources)
+  - [Getting Help](#getting-help)
+  - [Community](#community)
+- [🙏 Credits & Acknowledgments](#-credits--acknowledgments)
+
 ## 🌐 Live Demo
 
 **[Try the Interactive Demo →](https://rafaelogic.github.io/writr/)**
@@ -935,8 +999,7 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 
 - 🐛 **[GitHub Issues](https://github.com/rafaelogic/writr/issues)** - Bug reports and feature requests
 - 💬 **[Discussions](https://github.com/rafaelogic/writr/discussions)** - Community support and Q&A
-- 📧 **Email Support**: support@writr.dev
-- � **Twitter**: [@WritrEditor](https://twitter.com/WritrEditor)
+- 📧 **Email Support**: 40rrafael@gmail.com
 
 ### Community
 
